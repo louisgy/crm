@@ -1,5 +1,8 @@
 package com.trafalgarcp.crm.services;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -28,14 +31,64 @@ public class  UserserviceImpl  implements Userservice {
 		System.out.println("UUUUUUUUUU"+dto.getUsername());
 		
 		User user = new User();
-		user.setFirstName(dto.getFirstname());
-		user.setLastName(dto.getLastname());
+		user.setFirstname(dto.getFirstname());
+		user.setLastname(dto.getLastname());
 		user.setEmail(dto.getEmail());
 		user.setPassword(dto.getPassword());
 		user.setUsername(dto.getUsername());
 		
 		return userRepository.save(user);
 	}
+
+	
+	@Override
+	public boolean isEmailAlreadyUsed(String email) {
+		List<User > userlist = userRepository.findByEmail(email);
+		if (userlist.size() > 0 ) // Email not yet used
+			return true;
+		else 
+		return false;
+	}
+
+
+
+	@Override
+	public boolean isUsernameAlreadyUsed(String username) {
+		
+		List<User > userlist = userRepository.findByUsername(username);
+		if (userlist.size() > 0 ) // Email not yet used
+			return true;
+		else 
+		return false;
+	}
+
+
+	@Override
+	public User findMyUserById(Integer id) {
+		User user = userRepository.findById(id).orElse(new User());
+		System.out.println("\n"+"------------------"+id+user.getFirstname()+"\n");
+		return (user);
+
+	}
+
+
+	@Override
+	public boolean save(User user) {
+		userRepository.save(user);
+		return false;
+	}
+
+
+	@Override
+	public User findByEmail(String email) {
+		return (userRepository.findByEmail(email).get(0));
+	}
+
+
+	
+	
+	
+	
 
 
 

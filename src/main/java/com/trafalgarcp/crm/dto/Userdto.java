@@ -9,26 +9,25 @@ import com.trafalgarcp.crm.constraints.EqualEmailParameters;
 
 public class Userdto {
 	
-    @NotNull
-    @Size(min=2, max=30)
+    
 	private String firstname;
     
-    @NotNull
-    @Size(min=2, max=30)
+   
+ 
 	private String lastname;
     
-    @NotNull
-    @Size(min=2, max=30)
+   
+    
 	private String username;
     
-    @Email
+    
 	private String email;
 	private String password;
 	private String matchinpassword;
 	
 
 	
-	@EqualEmailParameters
+
 	public Userdto(String firstname, String lastname, String username, String email, String password,
 			String matchinpassword) {
 		this.firstname = firstname;

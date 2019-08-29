@@ -84,6 +84,7 @@ span {
 		<div>
 			<label for="name">username</label> <input type="text" id="user_name"
 				name="username" th:field="*{username}">
+				 <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
 		</div>
 		<div>
 			<label for="mail">Email</label> <input type="text" id="e_mail"
@@ -91,12 +92,14 @@ span {
 				<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
 		</div>
 		<div>
-			<label for="mail">Password</label> <input type="text" id="pass_word"
+			<label for="mail">Password</label> <input type="password" id="pass_word"
 				name="password" th:field="*{password}">
+				<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
 		</div>
 		<div>
-			<label for="mail">Conf. Password</label> <input type="text"
-				id="c_pass_word" name="cpassword" th:field="*{matchinpassword}">
+			<label for="mail">Conf. Password</label> <input type="password"
+				id="c_pass_word" name="matchinpassword" th:field="*{matchinpassword}">
+				<span th:if="${#fields.hasErrors('matchinpassword')}" th:errors="*{matchinpassword}"></span>
 		</div> 
 		<div class="button">
 			<button type="submit" value="Submit">Submit</button>

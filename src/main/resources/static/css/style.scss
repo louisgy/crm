@@ -1,7 +1,50 @@
-.center-box{
-	margin: 25px;
-	}
-h1,p{
-	font-size: 7em;
-	color:red;
-}
+
+	form{
+    width: 500px;
+    .form-section{
+      margin-top: 20px;
+     }
+     label{
+       font-size: 14px;
+       color: 	#000000;
+       display: block;
+       margin-bottom: 5px;
+     }
+     input{
+       width: calc(100% - 22px);
+       letter-spacing: 1px;
+       display: inline;
+       padding: 10px;
+       border-radius: 5px;
+       border: 1px solid #696969;
+       margin: 0;
+       font-size: 14px;
+       color: 	#808080;
+       &.top{
+         border-bottom-left-radius: 0px;
+         border-bottom-right-radius: 0px;
+       }
+       &.bottom{
+         border-top-width: 0px;
+         border-top-left-radius: 0px;
+         border-top-right-radius: 0px;
+         &.left{
+           border-bottom-right-radius: 0px;
+           border-right-width: 0px;
+           width: calc(50% - 21px);
+         }
+         &.right{
+           width: calc(50% - 22px);
+           border-bottom-left-radius: 0px;
+         }
+       }
+       &:focus{
+         outline: none;
+         // border: 3px solid blue;
+       }
+       &:disabled{
+         background-color:#ececec59;
+       }
+     }
+  }
+  

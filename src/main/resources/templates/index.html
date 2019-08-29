@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>CRM Trafalgar</title>
+    <title th:text="#{index.page.title}">CRM Trafalgar</title>
     <style>
       form {
         /* Just to center the form on the page */
@@ -66,6 +66,7 @@
         <div class="button">
            <button type="submit" value="Submit" >Submit</button>  
         </div> 
+        <a href="${flowExecutionUrl}&_eventId_submit">Sign up</a>
         <!-- <div><a  th:href="@{/signup}">Sign up!</a></div> --> 
     </form>
      
