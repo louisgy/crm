@@ -16,12 +16,12 @@ public class Address {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private Integer id;
 	
 	@ManyToOne(
 			fetch = FetchType.LAZY
 			)
-	@JoinColumn(name="company_id",nullable=false)
+	@JoinColumn(name="companyId",nullable=false)
 	private Company company;
 	
 	
@@ -35,6 +35,24 @@ public class Address {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	
+
+	public Integer getId() {
+		return id;
+	}
+
+
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+
+
 	public Company getCompany() {
 		return company;
 	}
@@ -65,8 +83,31 @@ public class Address {
 	public void setStreet(String street) {
 		this.street = street;
 	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", company=" + company + ", zipcode=" + zipcode + ", state=" + state + ", city="
+				+ city + ", street=" + street + "]";
+	}
 	
 	
-	
+	public void toString(String [] variables) {
+		for(String variable : variables) {
+			if( variable=="street")
+				System.out.println("\n"+"Street:" +getStreet());
+			else if( variable=="state")
+				System.out.println("\n"+"State :" +getState());
+			else if( variable=="city")
+				System.out.println("\n"+"City :" +getCity());
+			else if( variable=="zipcode")
+				System.out.println("\n"+"zipcode :" +getZipcode());
+			else if( variable=="id")
+				System.out.println("\n"+"Address Id :" +getId());
+		}
+		
+	}
 
 }

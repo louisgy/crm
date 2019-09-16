@@ -175,7 +175,7 @@ li a:hover {
                 <td th:text="${address.city}">City</td> 
                 <td th:text="${address.state}">State</td>
                 <td th:text="${address.zipcode}">Zipcode</td> 
-                 <td><a th:href="${ '/company/' + company.id+'/address/'+address.id}">Edit</a></td>
+                <td th:text="${address.street}">View</td>
                 <td th:text="${address.id}">Edit</td> 
                <!--   <td th:text="${address.id">Product Id</td>  -->
                <!--  <td th:text="${product.description}">descirption</td>

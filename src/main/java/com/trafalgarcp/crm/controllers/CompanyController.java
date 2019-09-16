@@ -1,6 +1,7 @@
 package com.trafalgarcp.crm.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -17,6 +18,7 @@ import com.trafalgarcp.crm.domain.Address;
 import com.trafalgarcp.crm.domain.Company;
 import com.trafalgarcp.crm.domain.CompanyDetails;
 import com.trafalgarcp.crm.domain.Notes;
+import com.trafalgarcp.crm.repository.AddressRepository;
 import com.trafalgarcp.crm.repository.CompanyRepository;
 
 @Controller
@@ -24,6 +26,9 @@ public class CompanyController {
 	
 	@Autowired
 	CompanyRepository companyRepository;
+	
+	@Autowired
+	AddressRepository addressRepository;
 	@GetMapping("company")
 	public String showCompany() {
 		return "company";
@@ -55,44 +60,61 @@ public class CompanyController {
 	}
 	
 	
-	@GetMapping("/new-company")
+	@GetMapping("/company/new") // Show form to create company first time, address included
 	public String showCompanyForm(Model model) {
 		
 		model.addAttribute("companyDetails", new CompanyDetails());
 		
-		return "newcompany";
+		return "newcompanyform";
 	}
 	
 
-	@GetMapping("/company-list")
+	@GetMapping("/companies")  // list all companies
 	public String getCompanyList (Model model) {
 		model.addAttribute("companies",companyRepository.findAll());
-		return "company-list";
+		return "companies";
 	}
 	
-	@GetMapping("/show-company")
-	public String showCompany (Model model) {
-		model.addAttribute("companies",companyRepository.findAll());
-		return "company-list";
+	@GetMapping("/company/{id}") // show a company data and addresses 
+	public String showCompany (@PathVariable Integer id,Model model) {
+		Company company1= new Company();
+		Optional optionalCompany = companyRepository.findById(id);
+		if(optionalCompany.isPresent()) {
+			company1= companyRepository.findById(id).get();
+		}
+		List<Address> addresses;
+		addresses = addressRepository.findByCompanyId(id);
+		System.out.println("----------------------"+addresses.get(0).getCity());
+		System.out.println("-----------"+" START list of addresses"+"-----------------");
+		for(Address address: addresses) {
+		
+			System.out.println(address.getState());
+			
+		}
+		System.out.println("-----------"+" END list of addresses"+"-----------------");
+		
+		model.addAttribute("addresses",addresses);
+		model.addAttribute("company",company1);
+		return "companyshow";
 	}
 	
-	@GetMapping("/company/edit/{id}")
+	@GetMapping("/company/edit/{id}")  //Edit a company, address not included in  this form
 	public String edit (@PathVariable Integer id, Model model) {
 		model.addAttribute("company",companyRepository.findById(id).get());
 		return "companyform";
 	}
-	@PostMapping("company/update")
-	public String updateCompany(Company company) {
+	@PostMapping("company/update") //company update
+	public String saveCompany(Company company) {
 		companyRepository.save(company);
 		return "companyshow";
 	}
 	
-	@PostMapping("/new-company")
+	@PostMapping("/new-company") // Process new company creation
 	public String createNewCompany(@Valid @ModelAttribute  CompanyDetails companyDetails,BindingResult bindingResult) {
 		
 		if( bindingResult.hasErrors()) {
 			
-			return "newcompany";
+			return "newcompanyform";
 		}
 		
 		Company company1 = new Company();
@@ -108,8 +130,9 @@ public class CompanyController {
 		company1.getAddresses().add(address1);
 		
 		companyRepository.save(company1);
+	
 		
-		return "company";
+		return "redirect:/company/"+company1.getId();
 	}
 	
 	

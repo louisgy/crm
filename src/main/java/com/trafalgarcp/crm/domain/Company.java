@@ -166,4 +166,30 @@ public class Company {
 		this.yearFounded = yearFounded;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Company [id=" + id + ", name=" + name + ", website=" + website + ", yearFounded=" + yearFounded
+				+ ", numEmployees=" + numEmployees + ", description=" + description + ", totalRevenue=" + totalRevenue
+				+ ", grossProfit=" + grossProfit + ", totalAsset=" + totalAsset + ", primaryPhone=" + primaryPhone
+				+ ", secondaryPhone=" + secondaryPhone + ", tertiaryPhone=" + tertiaryPhone + ", addresses=" + addresses
+				+ "]";
+	}
+	
+	public void toString(String [] variables) {
+		for(String variable : variables) {
+			if( variable=="name")
+				System.out.println("\n"+"Street:" +getName());
+			else if( variable=="website")
+				System.out.println("\n"+"Website :" +getWebsite());
+			else if( variable=="description")
+				System.out.println("\n"+"Description :" +getDescription());
+			else if( variable=="yearfounded")
+				System.out.println("\n"+"Year Founded :" +getYearFounded());
+			else if( variable=="id")
+				System.out.println("\n"+"Company Id :" +getId());
+		}
+		
+	}
+
 }
