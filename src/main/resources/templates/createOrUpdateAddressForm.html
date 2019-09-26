@@ -64,8 +64,8 @@ button {
 <body>
 	<!-- <form action="#" th:action="@{/company/{id}/address/new(id=${company.id})}" method="post"> -->
  
-	<form   method="post"> 
-		
+	<!-- <form action="#" th:action="@{/company/{companyId}/address/new(companyId=${company.id})}" method="post">  -->
+		<form   method="post">
 		<h1 style="text-align: center">LeapByCodes CRM</h1>
 		<h2 >Company</h2>
 		<hr>
@@ -74,13 +74,13 @@ button {
 
 		
 
-		<h2 th:text="${company.name}">Company</h2>
+		<h2>Address</h2>
 
 		<hr>
 		<br>
 		<div>
-		<!-- <input type="hidden" th:field="${company.id}"/>
-			<input type="hidden" th:field="${address.id}"/> -->
+		
+			<input type="hidden" th:field="${address.id}"/>
 		<label>Street</label> <input type="text" th:field="${address.street}"/>
 		<span th:if="${#fields.hasErrors('address.street')}" th:errors="*{street}"></span>
 		</div>

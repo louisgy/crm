@@ -13,18 +13,18 @@ public class AddressServiceImpl implements AddressService{
 	
 	@Autowired
 	private AddressRepository addressRepository;
-	@Autowired
-	private CompanyRepository companyRepository;
+//	@Autowired
+//	private CompanyRepository companyRepository;
 	
 	
 	
-	@Override
-	public Address save(Address address,Integer companyId) {
-		return  companyRepository.findById(companyId).map(company ->{
-			address.setCompany(company);
-			return addressRepository.save(address );
-		}).orElseThrow(() -> new ResourceNotFoundException("PostId " + companyId + " not found"));
-	}
+//	@Override
+//	public Address save(Address address,Integer companyId) {
+//		return  companyRepository.findById(companyId).map(company ->{
+//			address.setCompany(company);
+//			return addressRepository.save(address );
+//		}).orElseThrow(() -> new ResourceNotFoundException("PostId " + companyId + " not found"));
+//	}
 
 
 
@@ -32,6 +32,9 @@ public class AddressServiceImpl implements AddressService{
 	public Address findAddressById(Integer id) {
 		return  addressRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Address " + id + " not found"));
 	}
- 
+	
+	public Address save(Address address) {
+		return addressRepository.save(address);
+	}
 
 }

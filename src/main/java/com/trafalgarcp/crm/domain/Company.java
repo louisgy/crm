@@ -1,12 +1,19 @@
 package com.trafalgarcp.crm.domain;
 
+import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.ArrayList;
+
 import java.util.List;
 
 import com.trafalgarcp.crm.domain.Address;
+import com.trafalgarcp.crm.domain.Professional;
+
+import ch.qos.logback.core.net.SyslogOutputStream;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -17,12 +24,18 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@TableGenerator(name = "Comp_Gen", 
+table = "ID_GEN", 
+pkColumnName = "GEN_NAME", 
+valueColumnName = "GEN_VAL", 
+pkColumnValue = "Cmp_Gen", 
+initialValue = 80000, 
+allocationSize = 60)
 @Entity
-@TableGenerator(name = "Comp_Gen", table = "ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "Ucom_Gen", initialValue = 60000, allocationSize = 4)
 public class Company {
+	
 
-	@Id
-	@GeneratedValue(generator = "User_Gen")
+	@Id @GeneratedValue(generator = "Comp_Gen")
 	private Integer id;
 
 	@NotNull
@@ -33,16 +46,19 @@ public class Company {
 	private int yearFounded;
 	@Digits(fraction = 0, integer = 10, message = " Number of employeees must a number betweent 0 and 9999999999")
 	private int numEmployees;
-	private String description;
-	private float totalRevenue;
-	private float grossProfit;
-	private float totalAsset;
 	private String primaryPhone;
 	private String secondaryPhone;
-	private String tertiaryPhone;
+	private String comments;
+	private Date fiscalYear;
+	private String currency;
+	private BigDecimal revenue;
+	private BigDecimal ebidta;
 
 	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Address> addresses = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Professional> professionals = new ArrayList<>();
 
 	public Company() {
 		super();
@@ -60,15 +76,74 @@ public class Company {
 	}
 
 
-	public void addAddress(Address address) {
-		addresses.add(address);
-		address.setCompany(this);
-	}
+//	public void addAddress(Address address) {
+//		getAddresses().add(address);
+//		address.setCompany(this);
+//	}
+	
+	protected List<Professional> getProfessionalsInternal() {
+        if (this.professionals == null) {
+            this.professionals = new ArrayList<>();
+        }
+        return this.professionals;
+    }
+	
+//	public void addProfessional(Professional professional) {
+//		if (professional.isNew()) {
+//			getProfessionalsInternal().add(professional);
+//        }
+//        professional.setCompany(this);
+//	}
 
 	public void removeAddress(Address address) {
-		addresses.add(address);
-		address.setCompany(this);
+		getAddresses().remove(address);
+		address.setCompany(null);
 	}
+	
+	public void addAddress(Address address) {
+		addAddress(address, true);
+	}
+	
+	public void addAddress(Address address, boolean set) {
+		if(address != null) {
+			if(getAddresses().contains(address)) {
+				getAddresses().set(getAddresses().indexOf(address),address);
+			} else {
+				getAddresses().add(address);
+			} 
+			if(set) {
+				address.setCompany(this,false);
+			}
+		}
+	}
+	
+	public void addProfessional(Professional professional) {
+		addProfessional(professional, true);
+	}
+	
+	public void addProfessional(Professional professional, boolean set) {
+		if(professional != null) {
+			if(getProfessionals().contains(professional)) {
+				getProfessionals().set(getAddresses().indexOf(professional),professional);
+			} else {
+				getProfessionals().add(professional);
+			} 
+			if(set) {
+				professional.setCompany(this,false);
+			}
+		}
+	}
+	
+
+	public List<Professional> getProfessionals() {
+		return professionals;
+	}
+
+
+	public void setProfessionals(List<Professional> professionals) {
+		this.professionals = professionals;
+	}
+
 
 	public List<Address> getAddresses() {
 		return addresses;
@@ -102,37 +177,9 @@ public class Company {
 		this.numEmployees = numEmployees;
 	}
 
-	public String getDescription() {
-		return description;
-	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
 
-	public float getTotalRevenue() {
-		return totalRevenue;
-	}
-
-	public void setTotalRevenue(float totalRevenue) {
-		this.totalRevenue = totalRevenue;
-	}
-
-	public float getGrossProfit() {
-		return grossProfit;
-	}
-
-	public void setGrossProfit(float grossProfit) {
-		this.grossProfit = grossProfit;
-	}
-
-	public float getTotalAsset() {
-		return totalAsset;
-	}
-
-	public void setTotalAsset(float totalAsset) {
-		this.totalAsset = totalAsset;
-	}
+	
 
 	public String getPrimaryPhone() {
 		return primaryPhone;
@@ -150,13 +197,7 @@ public class Company {
 		this.secondaryPhone = secondaryPhone;
 	}
 
-	public String getTertiaryPhone() {
-		return tertiaryPhone;
-	}
-
-	public void setTertiaryPhone(String tertiaryPhone) {
-		this.tertiaryPhone = tertiaryPhone;
-	}
+	
 
 	public int getYearFounded() {
 		return yearFounded;
@@ -167,27 +208,95 @@ public class Company {
 	}
 
 
+	
+	
+	public String getComments() {
+		return comments;
+	}
+
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+
+	public Date getFiscalYear() {
+		return fiscalYear;
+	}
+
+
+	public void setFiscalYear(Date fiscalYear) {
+		this.fiscalYear = fiscalYear;
+	}
+
+
+	public String getCurrency() {
+		return currency;
+	}
+
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
+
+	public BigDecimal getRevenue() {
+		return revenue;
+	}
+
+
+	public void setRevenue(BigDecimal revenue) {
+		this.revenue = revenue;
+	}
+
+
+	public BigDecimal getEbidta() {
+		return ebidta;
+	}
+
+
+	public void setEbidta(BigDecimal ebidta) {
+		this.ebidta = ebidta;
+	}
+	
+	
+
+
+	
+	
+
+	
+
+	
+
+
 	@Override
 	public String toString() {
 		return "Company [id=" + id + ", name=" + name + ", website=" + website + ", yearFounded=" + yearFounded
-				+ ", numEmployees=" + numEmployees + ", description=" + description + ", totalRevenue=" + totalRevenue
-				+ ", grossProfit=" + grossProfit + ", totalAsset=" + totalAsset + ", primaryPhone=" + primaryPhone
-				+ ", secondaryPhone=" + secondaryPhone + ", tertiaryPhone=" + tertiaryPhone + ", addresses=" + addresses
-				+ "]";
+				+ ", numEmployees=" + numEmployees + ", primaryPhone=" + primaryPhone + ", secondaryPhone="
+				+ secondaryPhone + ", comments=" + comments + ", fiscalYear=" + fiscalYear + ", currency=" + currency
+				+ ", revenue=" + revenue + ", ebidta=" + ebidta + ", addresses=" + addresses + ", professionals="
+				+ professionals + "]";
 	}
-	
+
+
 	public void toString(String [] variables) {
 		for(String variable : variables) {
 			if( variable=="name")
 				System.out.println("\n"+"Street:" +getName());
 			else if( variable=="website")
 				System.out.println("\n"+"Website :" +getWebsite());
-			else if( variable=="description")
-				System.out.println("\n"+"Description :" +getDescription());
+			else if( variable=="comments")
+				System.out.println("\n"+"Comments :" +getComments());
 			else if( variable=="yearfounded")
 				System.out.println("\n"+"Year Founded :" +getYearFounded());
 			else if( variable=="id")
 				System.out.println("\n"+"Company Id :" +getId());
+			else if( variable=="addresses")
+			{
+				for(Address address : addresses)
+				System.out.println("\n"+"Addresses :" +getAddresses().toString());
+			}
 		}
 		
 	}

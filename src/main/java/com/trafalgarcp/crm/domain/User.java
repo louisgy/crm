@@ -14,8 +14,8 @@ import javax.persistence.TableGenerator;
 table = "ID_GEN", pkColumnName = "GEN_NAME", 
 valueColumnName = "GEN_VAL", 
 pkColumnValue = "Usr_Gen", 
-initialValue = 50000, 
-allocationSize = 6)
+initialValue = 20000, 
+allocationSize = 60)
 public class User {
 	 
 	 

@@ -88,18 +88,13 @@ button {
 			<label># Employees</label> <input type="text" th:field="${companyDetails.company.numEmployees}" />
 		    <span th:if="${#fields.hasErrors('company.numEmployees')}" th:errors="*{company.numEmployees}"></span> 
 		</div>
-		<div>
-			<label>Description</label>
-			<!-- <Textarea ></Textarea> -->
-			<Textarea th:field="${companyDetails.company.description}"></Textarea> 
-			 <span th:if="${#fields.hasErrors('company.description')}" th:errors="*{company.description}"></span> 
-		</div>
+	
 
 		<h2>Financial Information</h2>
 
 		<hr>
 		<br>
-		<div>
+	<!-- 	<div>
 			<label>Total Revenue</label> <input type="text" th:field="${companyDetails.company.totalRevenue}"/> 
 			 <span th:if="${#fields.hasErrors('company.totalRevenue')}" th:errors="*{company.totalRevenue}"></span> 
 		</div>
@@ -110,10 +105,10 @@ button {
 		<div>
 			<label>Total Asset</label> <input type="text" th:field="${companyDetails.company.totalAsset}"/> 
 			<span th:if="${#fields.hasErrors('company.totalAsset')}" th:errors="*{company.totalAsset}"></span> 
-		</div>
+		</div> -->
 		
 		<h2>Phone Contact</h2>
-		<div>
+		<!-- div>
 			<label>Primary Phone</label> <input type="text" th:field="${companyDetails.company.primaryPhone}"/> 
 			<span th:if="${#fields.hasErrors('company.primaryPhone')}" th:errors="*{company.primaryPhone}"></span> 
 		</div>
@@ -124,7 +119,7 @@ button {
 		<div>
 			<label>Tertiary</label> <input type="text" th:field="${companyDetails.company.tertiaryPhone}"/> 
 			<span th:if="${#fields.hasErrors('company.tertiaryPhone')}" th:errors="*{company.tertiaryPhone}"></span>
-		</div>
+		</div> -->
 
 		<h2>Address</h2>
 

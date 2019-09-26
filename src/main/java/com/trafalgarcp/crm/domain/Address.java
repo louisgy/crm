@@ -7,15 +7,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.TableGenerator;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+@TableGenerator(name = "Addr_Gen", 
+table = "ID_GEN", 
+pkColumnName = "GEN_NAME", 
+valueColumnName = "GEN_VAL", 
+pkColumnValue = "Addrs_Gen", 
+initialValue = 10000, 
+allocationSize = 60)
 @Entity
 public class Address {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(generator = "Addr_Gen")
 	private Integer id;
 	
 	@ManyToOne(
@@ -28,7 +35,8 @@ public class Address {
 	private int    zipcode;
 	private String state;
 	private String city;
-	private String street;
+    private String street;
+    private String Country;
 
 	
 	public Address() {
@@ -36,32 +44,46 @@ public class Address {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
-	
-
 	public Integer getId() {
 		return id;
 	}
 
-
-
-
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	public void setCompany(Company company) {
+		setCompany(company,true);
+	}
 
-
-
+	void setCompany(Company company, boolean add) {
+		this.company=company;
+		if(company!= null && add) {
+			company.addAddress(this,false);
+		}
+	}
 
 	public Company getCompany() {
 		return company;
 	}
-	public void setCompany(Company company) {
-		this.company = company;
-	}
+	
+	
+//	public void setCompany(Company company) {
+//		this.company = company;
+//	}
+	
+	
 	public int getZipcode() {
 		return zipcode;
 	}
+	public String getCountry() {
+		return Country;
+	}
+
+	public void setCountry(String country) {
+		Country = country;
+	}
+
 	public void setZipcode(int zipcode) {
 		this.zipcode = zipcode;
 	}
@@ -106,6 +128,8 @@ public class Address {
 				System.out.println("\n"+"zipcode :" +getZipcode());
 			else if( variable=="id")
 				System.out.println("\n"+"Address Id :" +getId());
+			else if( variable=="companyid")
+				System.out.println("\n"+"company Id :" +getCompany());
 		}
 		
 	}

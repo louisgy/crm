@@ -1,0 +1,80 @@
+
+<div class="row" data-th-fragment="professional-view">
+	  <!-- form input mask -->
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2 class="lead">Professionals</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                    
+                      <li><a ><span class="glyphicon glyphicon-comment">AddNotes</span></a>
+                      </li>
+                      <li> <a th:href="@{/company/{cid}/professional/{pid}/edit(cid=${company.id},pid=${professional.id})}" ><span class="glyphicon glyphicon-pencil" aria-hidden="true">Edit</span></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br />
+                   
+                   <table class="table" style="td:first-child {font-weight: bold;color:green;}">
+			
+				
+				<tbody>
+					<tr>
+						<!--          <th scope="row">1</th> -->
+						<th>First Name</th>
+						<td th:text="${professional.firstname}">First Name</td>
+					</tr>
+					<tr>
+						<!--    <th scope="row">2</th> -->
+						<th>Last Name</th>
+						<td th:text="${professional.lastname}">Last Name</td>
+					</tr>
+					<tr>
+						<th>Title</th>
+						<td th:text="${professional.title}">Title</td>
+					</tr>
+					<tr>
+						<th>Primary Phone</th>
+						<td th:text="${professional.primaryPhone}">Primary Phone</td>
+					</tr>
+					<tr>
+						<th>Secondary Phone</th>
+						<td th:text="${professional.secondaryPhone}">Secondary Phone</td>
+					</tr>
+					<tr>
+						<th>Email</th>
+						<td th:text="${professional.email}">Email</td>
+					</tr>
+					<tr>
+						<th>Email</th>
+						<td th:text="${professional.linkedin}">Linkedin</td>
+					</tr>
+					<tr>
+						<th>Relationship</th>
+						<td th:text="${professional.relationship}">Relationship</td>
+					</tr>
+					<tr>
+						<th>Comments</th>
+						<td th:text="${professional.comments}">Comments</td>
+					</tr>
+				</tbody>
+			</table>
+                   
+                   
+                   
+                  </div>
+                </div>
+              </div>
+              <!-- /form input mask -->
+
+<div class="clearfix"></div>
+
+</div>
+
+
+
+
+
+
+

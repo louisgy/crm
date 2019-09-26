@@ -8,7 +8,9 @@ import com.trafalgarcp.crm.repository.AddressRepository;
 public interface AddressService {
 	
 	
-	public Address save(Address address,Integer companyId);
+//	public Address save(Address address,Integer companyId);
+	public Address save(Address address);
+	
 	
 	public Address findAddressById(Integer id);
 }

@@ -9,4 +9,5 @@ import com.trafalgarcp.crm.domain.Company;
 
 public interface AddressRepository extends JpaRepository<Address,Integer>{
 	List<Address> findByCompanyId(Integer id); 
+
 }

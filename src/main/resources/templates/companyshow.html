@@ -109,13 +109,11 @@ li a:hover {
 			
 			<ul>
   <li><a th:href="@{/company/{id}/address/new(id=${company.id})}">Add Address</a></li>
-  <li><a href="#contact">Edit</a></li></ul>
+  <li><a th:href="@{/company/{id}/edit(id=${company.id})}">Edit</a></ul>
   <h1>Company</h1>
+
 		<table border="0" >
-			<tr>
-				<td class="b">Id</td>
-				<td><span th:text="*{company.id}">name</span></td>
-			</tr>
+	
 			<tr>
 				<td class="b">Name</td>
 				<td><span th:text="*{company.name}">name</span></td>
@@ -170,12 +168,19 @@ li a:hover {
                 <th>Edit</th>
             </tr>
             <tr th:each="address : ${addresses}">
-                <td th:text="${address.id}">Id</td> 
+         <td th:text="${address.id}">Id</td>  
+           <!--    <td >#</td> -->
                 <td th:text="${address.street}">street</td>
                 <td th:text="${address.city}">City</td> 
                 <td th:text="${address.state}">State</td>
                 <td th:text="${address.zipcode}">Zipcode</td> 
-                 <td><a th:href="${ '/company/' + company.id+'/address/'+address.id}">Edit</a></td>
+       <!--           <td><a th:href="${ '/company/' + company.id+'/address/'+address.id}">Edit</a></td> -->
+        <!--  <td><a th:href="${ '/company/' + company.id+'/address/'+address.id+'/edit'}">Edit</a></td> -->
+        <td><a th:href="@{/company/{companId}/address/{addressId}/edit(companId=${company.id},addressId=${address.id})}">Edit</a></td>
+    <!--      <a th:href="@{/company/{id}/address/new(id=${company.id})}">Add Address</a> -->
+         <!-- <td><a
+                th:href="@{{ownerId}/pets/{petId}/edit(ownerId=${owner.id},petId=${pet.id})}">Edit
+                  Pet</a></td> -->
                 <td th:text="${address.id}">Edit</td> 
                <!--   <td th:text="${address.id">Product Id</td>  -->
                <!--  <td th:text="${product.description}">descirption</td>

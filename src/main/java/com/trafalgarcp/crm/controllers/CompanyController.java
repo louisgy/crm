@@ -1,5 +1,6 @@
 package com.trafalgarcp.crm.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,17 +19,23 @@ import com.trafalgarcp.crm.domain.Address;
 import com.trafalgarcp.crm.domain.Company;
 import com.trafalgarcp.crm.domain.CompanyDetails;
 import com.trafalgarcp.crm.domain.Notes;
+import com.trafalgarcp.crm.domain.Professional;
 import com.trafalgarcp.crm.repository.AddressRepository;
 import com.trafalgarcp.crm.repository.CompanyRepository;
+import com.trafalgarcp.crm.repository.ProfessionalRepository;
 
 @Controller
 public class CompanyController {
 	
 	@Autowired
-	CompanyRepository companyRepository;
+	private CompanyRepository companyRepository;
 	
 	@Autowired
 	AddressRepository addressRepository;
+	
+	@Autowired
+	ProfessionalRepository professionalRepository;
+	
 	@GetMapping("company")
 	public String showCompany() {
 		return "company";
@@ -60,18 +67,27 @@ public class CompanyController {
 	}
 	
 	
+//	@GetMapping("/company/new") // Show form to create company first time, address included
+//	public String showCompanyForm(Model model) {
+//		
+//		model.addAttribute("companyDetails", new CompanyDetails());
+//		
+//		
+//		return "newcompanyform";
+//	}
+	
 	@GetMapping("/company/new") // Show form to create company first time, address included
-	public String showCompanyForm(Model model) {
+	public String showCompanyForm2(Model model) {
 		
 		model.addAttribute("companyDetails", new CompanyDetails());
 		
-		return "newcompanyform";
+		return "/company/companyform-details";
 	}
 	
 
 	@GetMapping("/companies")  // list all companies
 	public String getCompanyList (Model model) {
-		model.addAttribute("companies",companyRepository.findAll());
+		//model.addAttribute("companies",companyRepository.findAll());
 		return "companies";
 	}
 	
@@ -82,6 +98,11 @@ public class CompanyController {
 		if(optionalCompany.isPresent()) {
 			company1= companyRepository.findById(id).get();
 		}
+		
+//		Company company1= new Company();
+//		
+//			company1= companyRepository.findById(id);
+
 		List<Address> addresses;
 		addresses = addressRepository.findByCompanyId(id);
 		System.out.println("----------------------"+addresses.get(0).getCity());
@@ -95,26 +116,51 @@ public class CompanyController {
 		
 		model.addAttribute("addresses",addresses);
 		model.addAttribute("company",company1);
-		return "companyshow";
+		//return "companyshow";
+		return "/company/companyview";
 	}
 	
-	@GetMapping("/company/edit/{id}")  //Edit a company, address not included in  this form
-	public String edit (@PathVariable Integer id, Model model) {
-		model.addAttribute("company",companyRepository.findById(id).get());
-		return "companyform";
+	/*
+	 *  update company
+	 */
+	
+	@GetMapping("/company/{id}/edit")  // Show update company form, address not included
+	public String initUpdateCompanyForm (@PathVariable Integer id, Model model) {
+		Company company = new Company();
+		if(this.companyRepository.findById(id).isPresent()) {
+		company = this.companyRepository.findById(id).get();
+		}
+		model.addAttribute("company",company);
+		return "/company/companyform";
 	}
-	@PostMapping("company/update") //company update
-	public String saveCompany(Company company) {
-		companyRepository.save(company);
-		return "companyshow";
+	
+	//Issues : find a way to update company without having to load addresses and saved them again
+	@PostMapping("/company/{id}/edit")  //Submitting updated company form, address not included
+	public String processUpdateCompanyForm (Company company,@PathVariable Integer id, Model model) {
+	
+		//company.setId(id);
+	//	this.companyRepository.update(company.getId(),company.getName());
+		
+		List <Address> addresses = new ArrayList<Address>();
+		List <Professional> professionals = new ArrayList<Professional>();
+		addresses=this.addressRepository.findByCompanyId(company.getId());
+		professionals= this.professionalRepository.findByCompanyId(company.getId());
+		company.setAddresses(addresses);
+		company.setProfessionals(professionals);
+		this.companyRepository.save(company);
+		return "redirect:/company/"+company.getId();
 	}
+	
+	
+	
+
 	
 	@PostMapping("/new-company") // Process new company creation
 	public String createNewCompany(@Valid @ModelAttribute  CompanyDetails companyDetails,BindingResult bindingResult) {
 		
 		if( bindingResult.hasErrors()) {
 			
-			return "newcompanyform";
+			return "/company/companyform-details";
 		}
 		
 		Company company1 = new Company();
