@@ -12,6 +12,7 @@ import com.trafalgarcp.crm.domain.Professional;
 import ch.qos.logback.core.net.SyslogOutputStream;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -48,7 +49,8 @@ public class Company {
 	private int numEmployees;
 	private String primaryPhone;
 	private String secondaryPhone;
-	private String comments;
+	@Column(length =7000)
+	private String description;
 	private Date fiscalYear;
 	private String currency;
 	private BigDecimal revenue;
@@ -210,13 +212,16 @@ public class Company {
 
 	
 	
-	public String getComments() {
-		return comments;
+
+
+
+	public String getDescription() {
+		return description;
 	}
 
 
-	public void setComments(String comments) {
-		this.comments = comments;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 
@@ -259,24 +264,14 @@ public class Company {
 		this.ebidta = ebidta;
 	}
 	
-	
-
-
-	
-	
-
-	
-
-	
-
 
 	@Override
 	public String toString() {
 		return "Company [id=" + id + ", name=" + name + ", website=" + website + ", yearFounded=" + yearFounded
 				+ ", numEmployees=" + numEmployees + ", primaryPhone=" + primaryPhone + ", secondaryPhone="
-				+ secondaryPhone + ", comments=" + comments + ", fiscalYear=" + fiscalYear + ", currency=" + currency
-				+ ", revenue=" + revenue + ", ebidta=" + ebidta + ", addresses=" + addresses + ", professionals="
-				+ professionals + "]";
+				+ secondaryPhone + ", description=" + description + ", fiscalYear=" + fiscalYear + ", currency="
+				+ currency + ", revenue=" + revenue + ", ebidta=" + ebidta + ", addresses=" + addresses
+				+ ", professionals=" + professionals + "]";
 	}
 
 
@@ -287,7 +282,7 @@ public class Company {
 			else if( variable=="website")
 				System.out.println("\n"+"Website :" +getWebsite());
 			else if( variable=="comments")
-				System.out.println("\n"+"Comments :" +getComments());
+				System.out.println("\n"+"Description :" +getDescription());
 			else if( variable=="yearfounded")
 				System.out.println("\n"+"Year Founded :" +getYearFounded());
 			else if( variable=="id")

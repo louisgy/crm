@@ -1,0 +1,63 @@
+
+<div class="col-md-6 col-sm-6 col-xs-12"
+	data-th-fragment="company-details">
+	<div class="x_panel">
+		<div class="x_content">
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<th>Company Name</th>
+						<td th:text="*{company.name}">Company name</td>
+					</tr>
+					<tr>
+						<th>Website</th>
+						<td th:text="*{company.website}">Website</td>
+					</tr>
+					<tr>
+						<th>Year Founded</th>
+						<td th:text="*{company.yearFounded}">Year Founded</td>
+					</tr>
+					<tr>
+						<th># Employees</th>
+						<td th:text="*{company.numEmployees}"># Employees</td>
+					</tr>
+					<tr>
+						<th>Primary Phone</th>
+						<td th:text="*{company.primaryPhone}">Primary Phone</td>
+					</tr>
+					<tr>
+						<th>Secondary Phone</th>
+						<td th:text="*{company.secondaryPhone}">Secondary Phone</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12"
+	data-th-fragment="company-financial">
+	<div class="x_panel">
+		<div class="x_content">
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<th scope="row">Fiscal Year</th>
+						<td th:text="*{company.fiscalYear}">no</td>
+					</tr>
+					<tr>
+						<th scope="row">Currenccy</th>
+						<td th:text="*{company.currency}">yes</td>
+					</tr>
+					<tr>
+						<th scope="row">Revenue</th>
+						<td th:text="*{company.revenue}">2019</td>
+					</tr>
+					<tr>
+						<th scope="row">EBIDTA</th>
+						<td th:text="*{company.ebidta}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

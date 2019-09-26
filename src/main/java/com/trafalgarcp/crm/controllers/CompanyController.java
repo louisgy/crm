@@ -117,7 +117,8 @@ public class CompanyController {
 		model.addAttribute("addresses",addresses);
 		model.addAttribute("company",company1);
 		//return "companyshow";
-		return "/company/companyview";
+		//return "/company/companyview";
+	    return "/company/company-view";
 	}
 	
 	/*
