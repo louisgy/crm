@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-decorate="~{fragments/layout}">
+<head>
+
+
+<title>Trafalgar CRM! |</title>
+
+
+</head>
+
+<body>
+
+
+	<!-- page content -->
+	<div class="right_col" role="main" data-layout-fragment="content">
+		<div class="">
+			<div class="page-title">
+				<div class="title_left">
+					<!-- 	<h3 th:text="${company.name}">Company Name</h3> -->
+				</div>
+
+
+			</div>
+
+			<div class="clearfix"></div>
+			<div data-th-replace="/fragments/company/fragments-company-form :: company-form"></div>
+			
+			<!-- 
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="x_panel">
+						<div class="x_title">
+							<h2>
+								New Company <small></small>
+							</h2>
+							<ul class="nav navbar-right panel_toolbox">
+								<li><a class="collapse-link"><i
+										class="fa fa-chevron-up"></i></a></li>
+
+								<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+							</ul>
+							<div class="clearfix"></div>
+						</div>
+						<div class="x_content">
+							<br />
+
+
+							<form id="demo-form2" data-parsley-validate
+								class="form-horizontal form-label-left" method="post">
+				
+								<input type="hidden" />
+						 		<div class="form-group">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12"
+										for="first-name">Company<span class="required">*</span>
+									</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<input type="text" id="first-name" required="required"
+											class="form-control col-md-7 col-xs-12">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12"
+										for="last-name">Website <span class="required">*</span>
+									</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+
+										<input type="text" id="last-name" name="last-name"
+											required="required" class="form-control col-md-7 col-xs-12">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12"
+										for="title">Year Founded<span class="required">*</span>
+									</label>
+									<div class="col-md-1 col-sm-1 col-xs-12">
+										<input type="text" id="title" name="title" required="required"
+											class="form-control col-md-7 col-xs-12">
+									</div>
+								</div>
+								<div class="form-group ">
+									<label for="linkedin"
+										class="control-label col-md-3 col-sm-3 col-xs-12">#
+										Employees </label>
+									<div class="col-md-2 col-sm-2 col-xs-12">
+										<input id="relationship"
+											class="form-control col-md-7 col-xs-12" type="text"
+											name="relationship">
+									</div>
+								</div>
+								<div class="form-group ">
+									<label for="linkedin"
+										class="control-label col-md-3 col-sm-12 col-xs-12">Comments
+									</label>
+									<div class="col-md-6 col-sm-12 col-xs-12">
+										<textarea id="comments"
+											class="form-control col-md-7 col-xs-12" type="text"
+											name="comments"></textarea>
+									</div>
+								</div>
+								<div class="ln_solid"></div>
+								<h4>Financial Information</h4></br>
+
+								<div class="row">
+									<div class="col-md-3 col-sm-12 col-xs-12 form-group">
+										<label for="ex3">Fiscal Year</label> <input type="date"
+											placeholder=".col-md-3" class="form-control">
+									</div>
+
+									<div class="col-md-3 col-sm-12 col-xs-12 form-group">
+										<label for="ex3">Currency</label> <select class="form-control">
+											<option>U.S Dollar</option>
+											<option>Euro</option>
+											<option>Japanese Yen</option>
+											<option>Canadian Dollar</option>
+										</select>
+									</div>
+
+									<div class="col-md-3 col-sm-12 col-xs-12 form-group">
+										<label for="ex3">Revenue</label> <input type="text"
+											class="form-control">
+									</div>
+
+									<div class="col-md-3 col-sm-12 col-xs-12 form-group">
+										<label for="ex3">EBIDTA</label> <input type="text"
+											class="form-control">
+									</div>
+								</div>
+
+								<div class="ln_solid"></div>
+								<h4>Phone Contact</h4></br>
+
+								<div class="row">
+									<div class="col-md-3 col-sm-12 col-xs-12 form-group">
+										<label for="ex3">Primary Phone</label> <input type="text"
+											class="form-control" placeholder="ex. 249-632-9275">
+									</div>
+
+									<div class="col-md-3 col-sm-12 col-xs-12 form-group">
+										<label for="ex3">Secondary Phone</label> <input type="text"
+											class="form-control" placeholder="ex. 249-789-2323">
+									</div>
+								</div>
+								<div class="ln_solid"></div>
+								<h4>Address</h4>
+
+								<div class="form-group">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12"
+										for="first-name">Address </label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<input type="text" id="first-name" required="required"
+											class="form-control col-md-7 col-xs-12">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12"
+										for="last-name">Street
+									</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+
+										<input type="text" id="last-name" name="last-name"
+											required="required" class="form-control col-md-7 col-xs-12">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12"
+										for="last-name">Zipcode
+									</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+
+										<input type="text" id="last-name" name="last-name"
+											required="required" class="form-control col-md-7 col-xs-12">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12"
+										for="first-name">State</label>
+									<div class="col-md-2 col-sm-6 col-xs-12">
+										<select class="form-control">
+											<option>Maryland</option>
+											<option>Texas</option>
+											<option>District of Columbia</option>
+											<option>Virginia</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12"
+										for="first-name">Country</label>
+									<div class="col-md-2 col-sm-6 col-xs-12">
+										<select class="form-control">
+											<option>USA</option>
+											<option>Japan</option>
+											<option>China</option>
+											<option>Great Britain</option>
+											<option>Great Britain</option>
+											<option>Brazil</option>
+										</select>
+									</div>
+								</div>
+
+								<div class="ln_solid"></div>
+								<div class="form-group">
+									<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+										<button type="submit" class="btn btn-success">Submit</button>
+									</div>
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+ -->
+
+		</div>
+	</div>
+	<!-- /page content -->
+
+
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+
+<div class="row" data-th-fragment="company-form">
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>
+					New Company <small></small>
+				</h2>
+				<ul class="nav navbar-right panel_toolbox">
+					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+
+					<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<br />
+
+
+				<form id="demo-form2" data-parsley-validate action="#"
+					 class="form-horizontal form-label-left" th:action="@{/company/{id}/edit(id=${company.id})}"
+					method="post" th:object="${company}">
+
+					<input type="hidden" />
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12"
+							for="first-name">Company Name<span class="required">*</span>
+						</label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+							<input type="text" id="name" required="required"
+								th:field="*{name}"
+								class="form-control col-md-7 col-xs-12"> <span
+								th:if="${#fields.hasErrors('name')}"
+								th:errors="*{name}"></span>
+						</div>
+
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12"
+							for="last-name">Website </label>
+						<div class="col-md-6 col-sm-6 col-xs-12">
+
+							<input type="text" id="last-name" name="lwebsite"
+								th:field="*{website}"
+								class="form-control col-md-7 col-xs-12"> <span
+								th:if="${#fields.hasErrors('website')}"
+								th:errors="*{website}"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12"
+							for="title">Year Founded<span class="required">*</span>
+						</label>
+						<div class="col-md-1 col-sm-1 col-xs-12">
+							<input type="text" id="title" name="tyearFounded"
+								th:field="*{yearFounded}"
+								class="form-control col-md-7 col-xs-12"> <span
+								th:if="${#fields.hasErrors('yearFounded')}"
+								th:errors="*{yearFounded}"></span>
+						</div>
+					</div>
+					<div class="form-group ">
+						<label for="linkedin"
+							class="control-label col-md-3 col-sm-3 col-xs-12">#
+							Employees </label>
+						<div class="col-md-2 col-sm-2 col-xs-12">
+							<input id="relationship" class="form-control col-md-7 col-xs-12"
+								type="text" th:field="*{numEmployees}"
+								name="relationship"> <span
+								th:if="${#fields.hasErrors('numEmployees')}"
+								th:errors="*{numEmployees}"></span>
+						</div>
+					</div>
+					<div class="form-group ">
+						<label for="linkedin"
+							class="control-label col-md-3 col-sm-12 col-xs-12">Comments
+						</label>
+						<div class="col-md-6 col-sm-12 col-xs-12">
+							<textarea id="comments" class="form-control col-md-7 col-xs-12"
+								type="text" name="comments"
+								th:field="*{comments}"></textarea>
+							<span th:if="${#fields.hasErrors('comments')}"
+								th:errors="*{comments}"></span>
+						</div>
+					</div>
+					<div class="ln_solid"></div>
+					<h4>Financial Information</h4>
+					</br>
+
+					<div class="row">
+						<div class="col-md-3 col-sm-12 col-xs-12 form-group">
+							<label for="ex3">Fiscal Year</label> <input type="date"
+								placeholder=".col-md-3" class="form-control"
+								th:field="*{fiscalYear}">
+						</div>
+
+						<div class="col-md-3 col-sm-12 col-xs-12 form-group">
+							<label for="ex3">Currency</label> <select class="form-control"
+								th:field="*{currency}">
+								<option value="US Dollar">US DOllar</option>
+								<option value="Euro">Euro</option>
+								<option value="yen">Yen</option>
+							</select>
+						</div>
+
+						<div class="col-md-3 col-sm-12 col-xs-12 form-group">
+							<label for="ex3">Revenue</label> <input type="text"
+								class="form-control"
+								th:field="*{revenue}"> <span
+								th:if="${#fields.hasErrors('revenue')}"
+								th:errors="*{revenue}"></span>
+						</div>
+
+						<div class="col-md-3 col-sm-12 col-xs-12 form-group">
+							<label for="ex3">EBIDTA</label> <input type="text"
+								class="form-control" th:field="*{ebidta}">
+							<span th:if="${#fields.hasErrors('ebidta')}"
+								th:errors="*{ebidta}"></span>
+						</div>
+					</div>
+
+					<div class="ln_solid"></div>
+					<h4>Phone Contact</h4>
+					</br>
+
+					<div class="row">
+						<div class="col-md-3 col-sm-12 col-xs-12 form-group">
+							<label for="ex3">Primary Phone</label> <input type="text"
+								class="form-control" placeholder="ex. 249-632-9275"
+								th:field="*{primaryPhone}"> <span
+								th:if="${#fields.hasErrors('primaryPhone')}"
+								th:errors="*{primaryPhone}"></span>
+						</div>
+
+						<div class="col-md-3 col-sm-12 col-xs-12 form-group">
+							<label for="ex3">Secondary Phone</label> <input type="text"
+								class="form-control" placeholder="ex. 249-789-2323"
+								th:field="*{secondaryPhone}"> <span
+								th:if="${#fields.hasErrors('secondaryPhone')}"
+								th:errors="*{secondaryPhone}"></span>
+						</div>
+					</div>
+					<div class="ln_solid"></div>  
+					<div class="ln_solid"></div>
+					<div class="form-group">
+						<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+							<button type="submit" class="btn btn-success">Submit</button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+

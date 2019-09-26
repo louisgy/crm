@@ -131,7 +131,7 @@ public class CompanyController {
 		company = this.companyRepository.findById(id).get();
 		}
 		model.addAttribute("company",company);
-		return "/company/companyform";
+		return "/company/company-form";
 	}
 	
 	//Issues : find a way to update company without having to load addresses and saved them again
