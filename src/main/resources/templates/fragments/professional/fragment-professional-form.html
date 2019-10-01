@@ -1,0 +1,123 @@
+ 			<div class="row" data-th-fragment="professional-form">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="x_panel">
+						<div class="x_title">
+							<h2>
+								New Professionals <small></small>
+							</h2>
+							<ul class="nav navbar-right panel_toolbox">
+								<li><a class="collapse-link"><i
+										class="fa fa-chevron-up"></i></a></li>
+						
+								<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+							</ul>
+							<div class="clearfix"></div>
+						</div>
+						<div class="x_content">
+							<br />
+							<form id="demo-form2" data-parsley-validate
+								class="form-horizontal form-label-left" method="post">
+								<input type="hidden" th:field="${professional.id}"/>
+								<div class="form-group">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12"
+										for="first-name">First Name <span class="required">*</span>
+									</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<input type="text" id="first-name" required="required"
+										  th:field="${professional.firstname}"
+											class="form-control col-md-7 col-xs-12">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12"
+										for="last-name">Last Name <span class="required">*</span>
+									</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+		
+										<input type="text" id="last-name" name="last-name"
+										 th:field="${professional.lastname}" 
+											required="required" class="form-control col-md-7 col-xs-12">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="control-label col-md-3 col-sm-3 col-xs-12"
+										for="title">Title <span class="required">*</span>
+									</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<input type="text" id="title" name="title" required="required"
+											class="form-control col-md-7 col-xs-12" th:field="${professional.title}">
+									</div>
+								</div> 
+								<div class="form-group">
+									<label for="primary-phone"
+										class="control-label col-md-3 col-sm-3 col-xs-12">Primary
+										Phone </label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<input id="primary-phone"
+											class="form-control col-md-7 col-xs-12" type="text"
+											name="primary-phone" th:field="${professional.primaryPhone}">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="secondary-phone"
+										class="control-label col-md-3 col-sm-3 col-xs-12">Secondary
+										Phone</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<input id="secondary-phone"
+											class="form-control col-md-7 col-xs-12" type="text"
+											name="secondary-phone" th:field="${professional.secondaryPhone}">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label for="email"
+										class="control-label col-md-3 col-sm-3 col-xs-12">Email
+									</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<input id="email" class="form-control col-md-7 col-xs-12"
+											type="text" name="email"  th:field="${professional.email}" >
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="linkedin"
+										class="control-label col-md-3 col-sm-3 col-xs-12">Linkedin
+									</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<input id="linkedin" class="form-control col-md-7 col-xs-12"
+											type="text" name="linkedin" th:field="${professional.linkedin}">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="linkedin"
+										class="control-label col-md-3 col-sm-3 col-xs-12">Relationship
+									</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<input id="relationship" class="form-control col-md-7 col-xs-12"
+											type="text" name="relationship" disabled="disabled" placeholder="No"
+											th:field="${professional.relationship}" value="No">
+									</div>
+								</div>
+							
+								
+								<div class="form-group">
+									<label for="linkedin"
+										class="control-label col-md-3 col-sm-3 col-xs-12">Comments
+									</label>
+									<div class="col-md-6 col-sm-6 col-xs-12">
+										<textarea id="comments" class="form-control col-md-7 col-xs-12"
+											type="text" name="comments"
+											th:field="${professional.comments}" ></textarea>
+									</div>
+								</div>							
+								<div class="ln_solid"></div>
+								<div class="form-group">
+									<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+										<button type="submit" class="btn btn-success">Submit</button>
+									</div>
+								</div> 
+
+							</form>
+						</div>
+					</div>
+				</div>
+			</div> 

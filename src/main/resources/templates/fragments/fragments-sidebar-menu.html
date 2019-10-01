@@ -18,3 +18,22 @@
 	</div>
 
 </div>
+<div id="sidebar-menu" class="main_menu_side hidden-print main_menu"
+	data-th-fragment="sidebar-menu-company">
+	<div class="menu_section">
+		<h3>General</h3>
+		<ul class="nav side-menu">
+			<li><a h:href="@{/company/{cid}/(cid=${company.id})}"><i class="fa fa-home"></i> Company<span
+					class="fa fa-chevron-down"></span></a>
+				<ul class="nav child_menu">
+				   <li><a th:href="@{/company/{cid}(cid=${company.id})}">Home</a></li>
+				    <li><a th:href="@{/company/{cid}/edit(cid=${company.id})}">Edit</a></li>
+					<li><a th:href="@{/company/{cid}/professionals/new(cid=${company.id})}">Add Professionals</a></li>
+					<li><a th:href="@{/company/{cid}/address/new(cid=${company.id})}">Add Address</a></li>
+				</ul></li>
+	
+		</ul>
+	</div>
+
+</div>
+

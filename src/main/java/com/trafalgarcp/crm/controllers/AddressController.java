@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.trafalgarcp.crm.domain.Address;
 import com.trafalgarcp.crm.domain.Company;
+import com.trafalgarcp.crm.exception.ResourceNotFoundException;
 import com.trafalgarcp.crm.repository.AddressRepository;
 import com.trafalgarcp.crm.repository.CompanyRepository;
 import com.trafalgarcp.crm.services.AddressService;
@@ -72,7 +73,8 @@ public class AddressController {
 		
 		address.setCompany(company);
 		model.addAttribute("address",address);
-		return "createOrUpdateAddressForm";	
+		//return "createOrUpdateAddressForm";	
+		return "/address/address-form";
 	}
 	
 	@PostMapping("/address/new")
@@ -87,6 +89,18 @@ public class AddressController {
 		return "redirect:/company/"+company.getId();
 		
 	}
+	/*
+	 * Show an address
+	 */
+	
+	@GetMapping("/address/{id}")
+	public String showAddress(@PathVariable Integer id, Model model) {
+		Address address = new Address();
+		address=this.addressRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Address " + id + " not found"));
+		model.addAttribute("address",address);
+		
+		return "/address/address-view";
+	}
 	
 	@GetMapping("/address/{addressId}/edit")
 	public String initUpdateForm(@PathVariable Integer addressId,ModelMap model) {
@@ -98,7 +112,8 @@ public class AddressController {
 		
 		String [] var = {"id","state","street"};
 		address.toString(var);
-		return "createOrUpdateAddressForm";	
+		//return "createOrUpdateAddressForm";	
+		return "/address/address-form";
 	}
 	
 	

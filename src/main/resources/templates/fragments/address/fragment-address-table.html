@@ -1,0 +1,119 @@
+<div class="row" data-th-fragment="address-table-list">
+	<div class="col-md-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>Company Addresses</h2>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<!-- <p>Simple table with project listing with progress and editing options</p> -->
+				<!-- start project list -->
+				<table class="table table-striped projects">
+					<tbody>
+						<tr>
+							<td><a>2775 Sand Hill Road Suite 100 | Menlo Park, CA |
+									942025 | United States</a> <br /> <a>Phone: 650-223-9828 Fax:
+									652-234-4325 </a></td>
+							<td><span class="label label-primary">Primary</span></td>
+							<td><a href="#" class="btn btn-info btn-xs"><i
+									class="fa fa-pencil"></i> Edit </a></td>
+						</tr>
+						<tr>
+							<td><a>2775 Sand Hill Road Suite 100 | Menlo Park, CA |
+									942025 | United States</a> <br /> <a>Phone: 650-223-9828 Fax:
+									652-234-4325 </a></td>
+							<td></td>
+							<td><a href="#" class="btn btn-info btn-xs"><i
+									class="fa fa-pencil"></i> Edit </a></td>
+						</tr>
+						<tr>
+							<td><a>2775 Sand Hill Road Suite 100 | Menlo Park, CA |
+									942025 | United States</a> <br /> <a>Phone: 650-223-9828 Fax:
+									652-234-4325 </a></td>
+							<td></td>
+							<td><a href="#" class="btn btn-info btn-xs"><i
+									class="fa fa-pencil"></i> Edit </a></td>
+						</tr>
+						<tr>
+							<td><a>2775 Sand Hill Road Suite 100 | Menlo Park, CA |
+									942025 | United States</a> <br /> <a>Phone: 650-223-9828 Fax:
+									652-234-4325 </a></td>
+							<td></td>
+							<td><a href="#" class="btn btn-info btn-xs"><i
+									class="fa fa-pencil"></i> Edit </a></td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- end project list -->
+			</div>
+		</div>
+	</div>
+</div>
+
+
+ <th:block th:if="${not #lists.isEmpty(addresses)}">
+<div class="row" data-th-fragment="address-table">
+	<div class="col-md-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>Addresses</h2>
+				<ul class="nav navbar-right panel_toolbox">
+					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+					</li>
+					<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<!-- start project list -->
+				<table class="table table-striped projects">
+					<thead>
+						<tr>
+							<!--   <th style="width: 1%">#</th> -->
+							<th style="width: 20%">Street</th>
+							<th>City</th>
+							<th>State</th>
+							<th>Zipcode</th>
+
+							<th>Country</th>
+							<th>Relationship</th>
+							<th style="width: 20%">#Edit</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="address : ${addresses}">
+							<td th:text="${address.street}"><a>Street</a></td>
+							<td th:text="${address.state}"><a>City</a></td>
+							<td th:text="${address.zipcode}"><a>zipCode</a></td>
+							<td th:text="${address.Country}"><a>Country</a></td>
+							<td ><a>Relationship</a></td>
+							<td>NO</td>
+							<td><a th:href="@{/company/{cid}/address/{addid}/(addid=${address.id},cid=${company.id})}" class="btn btn-primary btn-xs"><i
+									class="fa fa-folder"></i> View </a> <a th:href="@{/company/{cid}/address/{addid}/edit(addid=${address.id},cid=${company.id})}"
+								class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>
+									Edit </a> <a href="#" class="btn btn-danger btn-xs"><i
+									class="fa fa-trash-o"></i> Delete </a></td>
+						</tr>
+						<!-- <tr>
+							<td><a>David Pierre Charles</a></td>
+							<td><a>CEO</a></td>
+							<td><a>grer@yahoo.com</a></td>
+							<td><a>https://www.linkedin/grer</a></td>
+							<td><a>240-287-9823</a></td>
+							<td>NO</td>
+							<td><a href="#" class="btn btn-primary btn-xs"><i
+									class="fa fa-folder"></i> View </a> <a href="#"
+								class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>
+									Edit </a> <a href="#" class="btn btn-danger btn-xs"><i
+									class="fa fa-trash-o"></i> Delete </a></td>
+						</tr> -->
+					</tbody>
+				</table>
+				<!-- end project list -->
+
+			</div>
+		</div>
+	</div>
+</div>
+
+</th:block>

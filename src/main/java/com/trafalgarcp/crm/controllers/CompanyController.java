@@ -104,7 +104,10 @@ public class CompanyController {
 //			company1= companyRepository.findById(id);
 
 		List<Address> addresses;
+		List<Professional> professionals;
+		
 		addresses = addressRepository.findByCompanyId(id);
+		professionals= professionalRepository.findByCompanyId(id);
 		System.out.println("----------------------"+addresses.get(0).getCity());
 		System.out.println("-----------"+" START list of addresses"+"-----------------");
 		for(Address address: addresses) {
@@ -114,6 +117,7 @@ public class CompanyController {
 		}
 		System.out.println("-----------"+" END list of addresses"+"-----------------");
 		
+		model.addAttribute("professionals",professionals);
 		model.addAttribute("addresses",addresses);
 		model.addAttribute("company",company1);
 		//return "companyshow";

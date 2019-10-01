@@ -1,0 +1,64 @@
+
+<div class="row" data-th-fragment="address-view">
+	  <!-- form input mask -->
+              <div class="col-md-6 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2 class="lead">Professionals</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                    
+                      <li><a ><span class="glyphicon glyphicon-comment">AddNotes</span></a>
+                      </li>
+                      <li> <a th:href="@{/company/{cid}/address/{aid}/edit(cid=${company.id},aid=${address.id})}" ><span class="glyphicon glyphicon-pencil" aria-hidden="true">Edit</span></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <br />
+                   
+                   <table class="table" style="td:first-child {font-weight: bold;color:green;}">
+			
+				
+				<tbody>
+					<tr>
+						<!--          <th scope="row">1</th> -->
+						<th>Street</th>
+						<td th:text="${address.street}">Street</td>
+					</tr>
+					<tr>
+						<!--    <th scope="row">2</th> -->
+						<th>City</th>
+						<td th:text="${address.city}">City</td>
+					</tr>
+					<tr>
+						<th>Zipcode</th>
+						<td th:text="${address.zipcode}">Zipcode</td>
+					</tr>
+					<tr>
+						<th>State</th>
+						<td th:text="${address.zipcode}">State</td>
+					</tr>
+					<tr>
+						<th>Country</th>
+						<td th:text="${address.country}">Country</td>
+					</tr>
+				</tbody>
+			</table>
+                   
+                   
+                   
+                  </div>
+                </div>
+              </div>
+              <!-- /form input mask -->
+
+<div class="clearfix"></div>
+
+</div>
+
+
+
+
+
+
+
