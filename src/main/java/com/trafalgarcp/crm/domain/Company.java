@@ -3,8 +3,9 @@ package com.trafalgarcp.crm.domain;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.ArrayList;
-
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.trafalgarcp.crm.domain.Address;
 import com.trafalgarcp.crm.domain.Professional;
@@ -17,7 +18,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
 import javax.validation.constraints.Digits;
@@ -61,6 +62,10 @@ public class Company {
 	
 	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Professional> professionals = new ArrayList<>();
+	
+	@ManyToMany(mappedBy = "companies")
+	private Set<Industry> industries = new HashSet<>();
+
 
 	public Company() {
 		super();
@@ -76,6 +81,8 @@ public class Company {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	
 
 
 //	public void addAddress(Address address) {
@@ -83,6 +90,9 @@ public class Company {
 //		address.setCompany(this);
 //	}
 	
+	
+
+
 	protected List<Professional> getProfessionalsInternal() {
         if (this.professionals == null) {
             this.professionals = new ArrayList<>();
@@ -97,11 +107,24 @@ public class Company {
 //        professional.setCompany(this);
 //	}
 
+	
+
+
 	public void removeAddress(Address address) {
 		getAddresses().remove(address);
 		address.setCompany(null);
 	}
 	
+	public Set<Industry> getIndustries() {
+		return industries;
+	}
+
+
+	public void setIndustries(Set<Industry> industries) {
+		this.industries = industries;
+	}
+
+
 	public void addAddress(Address address) {
 		addAddress(address, true);
 	}

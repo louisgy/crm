@@ -36,10 +36,6 @@ public class CompanyController {
 	@Autowired
 	ProfessionalRepository professionalRepository;
 	
-	@GetMapping("company")
-	public String showCompany() {
-		return "company";
-	}
 	
 	@GetMapping("company-landing")
 	public String showCompanyLanding() {
@@ -51,6 +47,7 @@ public class CompanyController {
 	public String showCompanyLanding2() {
 		return "company-landing2";
 	}
+	
 	@GetMapping("add-company")
 	public String addCompany() {
 		return "company-add";
@@ -84,11 +81,16 @@ public class CompanyController {
 		return "/company/companyform-details";
 	}
 	
-
-	@GetMapping("/companies")  // list all companies
+	/*
+	 * List All Companies
+	 */
+	
+	@GetMapping("/company")  
 	public String getCompanyList (Model model) {
-		//model.addAttribute("companies",companyRepository.findAll());
-		return "companies";
+		Company company = new Company();
+		List<Company> companies = this.companyRepository.findAll();
+		model.addAttribute("companies",companies);
+		return "/company/company";
 	}
 	
 	@GetMapping("/company/{id}") // show a company data and addresses 

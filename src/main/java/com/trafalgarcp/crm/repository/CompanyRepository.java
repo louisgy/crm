@@ -15,10 +15,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.trafalgarcp.crm.domain.Company;
-
+import java.util.*;
 
 public interface CompanyRepository extends CrudRepository<Company,Integer>{	
 	//Company findById(Integer id);
+	
+	List<Company> findAll();
 	
 	@Query("SELECT company FROM Company company left join fetch company.addresses WHERE company.id =:id")
 	@Transactional(readOnly = true)
