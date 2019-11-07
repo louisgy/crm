@@ -21,10 +21,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.TableGenerator;
+import javax.persistence.Transient;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+
 
 @TableGenerator(name = "Comp_Gen", 
 table = "ID_GEN", 
@@ -40,7 +43,7 @@ public class Company {
 	@Id @GeneratedValue(generator = "Comp_Gen")
 	private Integer id;
 
-	@NotNull
+//	@NotNull
 	@NotBlank
 	private String name;
 	private String website;
@@ -48,6 +51,7 @@ public class Company {
 	private int yearFounded;
 	@Digits(fraction = 0, integer = 10, message = " Number of employeees must a number betweent 0 and 9999999999")
 	private int numEmployees;
+	private String relationship;
 	private String primaryPhone;
 	private String secondaryPhone;
 	@Column(length =7000)
@@ -56,6 +60,10 @@ public class Company {
 	private String currency;
 	private BigDecimal revenue;
 	private BigDecimal ebidta;
+	@Transient
+	private Industry industry; // used for list in Company form -- TO BE DELETED
+	@Transient
+	private Category category; // used for list in Company form
 
 	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Address> addresses = new ArrayList<>();
@@ -63,8 +71,11 @@ public class Company {
 	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Professional> professionals = new ArrayList<>();
 	
-	@ManyToMany(mappedBy = "companies")
-	private Set<Industry> industries = new HashSet<>();
+	@ManyToMany(mappedBy = "companies") // should be deleted thereafter
+	private Set<Industry> industries = new HashSet<>(); // should be deleted thereafter
+	
+	@OneToMany(mappedBy = "company")
+    protected Set<CategorizedCompany> categorizedCompanies = new HashSet<>();
 
 
 	public Company() {
@@ -73,6 +84,27 @@ public class Company {
 	}
 
 	
+	
+	public Company(@NotNull @NotBlank String name, String website, @Digits(fraction = 0, integer = 6) int yearFounded,
+			@Digits(fraction = 0, integer = 10, message = " Number of employeees must a number betweent 0 and 9999999999") int numEmployees,
+			String primaryPhone, String secondaryPhone, String description, Date fiscalYear, String currency,
+			BigDecimal revenue, BigDecimal ebidta) {
+		super();
+		this.name = name;
+		this.website = website;
+		this.yearFounded = yearFounded;
+		this.numEmployees = numEmployees;
+		this.primaryPhone = primaryPhone;
+		this.secondaryPhone = secondaryPhone;
+		this.description = description;
+		this.fiscalYear = fiscalYear;
+		this.currency = currency;
+		this.revenue = revenue;
+		this.ebidta = ebidta;
+	}
+
+
+
 	public Integer getId() {
 		return id;
 	}
@@ -108,7 +140,7 @@ public class Company {
 //	}
 
 	
-
+	
 
 	public void removeAddress(Address address) {
 		getAddresses().remove(address);
@@ -159,6 +191,43 @@ public class Company {
 		}
 	}
 	
+	
+
+	public Category getCategory() {
+		return category;
+	}
+
+
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+
+
+	public String getRelationship() {
+		return relationship;
+	}
+
+
+
+	public void setRelationship(String relationship) {
+		this.relationship = relationship;
+	}
+
+
+
+	public Set<CategorizedCompany> getCategorizedCompanies() {
+		return categorizedCompanies;
+	}
+
+
+
+	public void setCategorizedCompanies(Set<CategorizedCompany> categorizedCompanies) {
+		this.categorizedCompanies = categorizedCompanies;
+	}
+
+
 
 	public List<Professional> getProfessionals() {
 		return professionals;
@@ -177,6 +246,20 @@ public class Company {
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
 	}
+	
+	
+
+	public Industry getIndustry() {
+		return industry;
+	}
+
+
+
+	public void setIndustry(Industry industry) {
+		this.industry = industry;
+	}
+
+
 
 	public String getName() {
 		return name;

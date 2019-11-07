@@ -1,5 +1,5 @@
 
-<div class="row" data-th-fragment="industry-form">
+<div class="row" data-th-fragment="category-form">
 	<div class="col-md-12 col-sm-12 col-xs-12">
 		<div class="x_panel">
 			<div class="x_title">
@@ -15,32 +15,37 @@
 			</div>
 			<div class="x_content">
 				<br />
-				<form id="demo-form2" data-parsley-validate th:object="${industry}"
+				<form id="demo-form2" data-parsley-validate th:object="${category}"
 					class="form-horizontal form-label-left" method="post">
+					<input hidden th:field="*{id}"/>
 					<div class="form-group" >
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="sub-category">Category</label>
+							for="sub-category">Category </label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" id="category" required="required" list="category" name="category" th:text="*{category}"
+							<!--   <input type="text"  required="required" list="categor" name="categorie" th:text="*{categorie}"
+								 class="form-control col-md-7 col-xs-12"> -->
+								 <input type="text"  required="required" list="categor" name="categorie"  th:text="*{categorie}"
 								 class="form-control col-md-7 col-xs-12">
-							<datalist id="category">
-								 <option value="Subcategory" th:each="category : ${categories}" th:value="${category}">
+							<datalist id="categor" >
+							     
+								 <option th:each="categorie : ${categories}" th:value="${categorie}">
 							</datalist>
 						</div>
 					</div>
 					
 					<div class="form-group" >
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
-							for="sub-category">Sub-Category </label>
+							for="sub-category">SubCategory </label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
-							<input type="text" id="sub-category" required="required" list="subcategory" name="subcategory" th:text="*{subcategory}"
+							<input type="text"  required="required" list="subcategory" name="subcategorie" th:text="*{subcategorie}"
 								 class="form-control col-md-7 col-xs-12">
 							<datalist id="subcategory" >
-								 <option value="Subcategory" th:each="subcategory : ${subcategories}" th:value="${subcategory}">
+								 <option  th:each="subcategorie : ${subcategories}" th:value="${subcategorie}">
 							</datalist>
 						</div>
 					</div>
-				  <div class="ln_solid"></div>
+					
+					<div class="ln_solid"></div>
 					<div class="form-group">
 						<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 							<button type="submit" class="btn btn-success">Submit</button>

@@ -10,7 +10,9 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication
 //@EnableJpaRepositories(basePackages = {"com.trafalgarcp.crm.domain"})
 //@EntityScan(basePackages = {"com.trafalgarcp.crm.domain"})
+//@ComponentScan({"com.trafalgarcp.crm."})
 @ComponentScan({"com.trafalgarcp.crm.constraints","com.trafalgarcp.crm.controllers","com.trafalgarcp.crm.services","com.trafalgarcp.crm.dto","com.trafalgarcp.crm.repository"})
+
 public class CrmApp {
 
 		public static void main(String[] args) {

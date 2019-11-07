@@ -60,6 +60,27 @@ public class Professional {
 		}
 		
 		
+		
+		
+		public Professional(@NotBlank String firstname, @NotBlank String lastname, @NotBlank String title,
+				@NotBlank @Email(message = "Email should be valid") String email,  String primaryPhone,
+				String secondaryPhone, String fax, String linkedin, String relationship) {
+			super();
+			this.firstname = firstname;
+			this.lastname = lastname;
+			this.title = title;
+			this.email = email;
+			this.primaryPhone = primaryPhone;
+			this.secondaryPhone = secondaryPhone;
+			this.fax = fax;
+			this.linkedin = linkedin;
+			this.relationship = relationship;
+			
+		}
+
+
+
+
 		public void setCompany(Company company) {
 			setCompany(company,true);
 		}

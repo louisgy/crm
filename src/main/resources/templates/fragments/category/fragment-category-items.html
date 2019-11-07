@@ -1,0 +1,47 @@
+<div class="row" data-th-fragment="category-table">
+	<div class="col-md-12">
+		<div class="x_panel">
+			<div class="x_title">
+				<h2>Professional</h2>
+				<ul class="nav navbar-right panel_toolbox">
+					<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+					</li>
+					<li><a class="close-link"><i class="fa fa-close"></i></a></li>
+				</ul>
+				<div class="clearfix"></div>
+			</div>
+			<div class="x_content">
+				<!-- start project list -->
+				<table class="table table-striped projects">
+					<thead>
+						<tr>
+							<!--   <th style="width: 1%">#</th> -->
+							<!-- <th style="width: 20%">Name</th> -->
+							<th>Category</th>
+							<th>Sub Category</th>
+
+							<th style="width: 20%">#Edit</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="category : ${categories}">
+							<!-- <td ><a><span th:text="${company.name}"></span>Name</a></td> -->
+							<td th:text="${category.categorie}"><a>Website</a></td>
+							<td th:text="${category.subcategorie}"><a>Year Founded</a></td>
+
+							<td><a class="btn btn-primary btn-xs"><i
+									class="fa fa-folder"></i> View </a> <a
+								th:href="@{/category/{catid}/edit(catid=${category.id})}"
+								class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>
+									Edit </a> <a href="#" class="btn btn-danger btn-xs"
+									th:href="@{/category/{catid}/del(catid=${category.id})}" ><i
+									class="fa fa-trash-o"></i> Delete </a></td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- end project list -->
+
+			</div>
+		</div>
+	</div>
+</div>

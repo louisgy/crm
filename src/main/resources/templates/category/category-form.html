@@ -9,11 +9,6 @@
 </head>
 
 <body>
-	<div data-layout-fragment="side-menu">
-		<div
-			data-th-replace="/fragments/fragments-sidebar-menu :: sidebar-menu-company"></div>
-	</div>
-
 
 
 	<!-- page content -->
@@ -21,11 +16,17 @@
 		<div class="">
 			<div class="page-title">
 				<div class="title_left">
-					<!-- 	<h3 th:text="${company.name}">Company Name</h3> -->
+					<h3 >Industry</h3>
 				</div>
+
+			
 			</div>
+
 			<div class="clearfix"></div>
-			<div data-th-replace="/fragments/company/fragments-company-form :: company-form"></div>
+	 		 <th:block data-th-replace="/fragments/category/fragment-category-form :: category-form"></th:block>  
+
+
+
 		</div>
 	</div>
 	<!-- /page content -->

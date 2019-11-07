@@ -44,6 +44,19 @@ public class Address {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	
+	public Address(int zipcode, String state, String city, String street, String country) {
+		super();
+		this.zipcode = zipcode;
+		this.state = state;
+		this.city = city;
+		this.street = street;
+		Country = country;
+	}
+
+
+
 	public Integer getId() {
 		return id;
 	}

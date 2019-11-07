@@ -19,8 +19,8 @@
 
 
 				<form id="demo-form2" data-parsley-validate action="#"
-					th:action="@{/new-company}" class="form-horizontal form-label-left"
-					method="post" th:object="${companyDetails}" >
+					th:action="@{/company/new}" class="form-horizontal form-label-left"
+					method="post">
 
 					<input type="hidden" />
 					<div class="form-group">
@@ -29,7 +29,7 @@
 						</label>
 						<div class="col-md-6 col-sm-6 col-xs-12">
 							<input type="text" id="name" required="required"
-								th:field="${companyDetails.company.name}"
+								th:field="${company.name}"
 								class="form-control col-md-7 col-xs-12"> <span
 								th:if="${#fields.hasErrors('company.name')}"
 								th:errors="*{company.name}"></span>
@@ -42,7 +42,7 @@
 						<div class="col-md-6 col-sm-6 col-xs-12">
 
 							<input type="text" id="last-name" name="lwebsite"
-								th:field="${companyDetails.company.website}"
+								th:field="${company.website}"
 								class="form-control col-md-7 col-xs-12"> <span
 								th:if="${#fields.hasErrors('company.website')}"
 								th:errors="*{company.website}"></span>
@@ -54,19 +54,20 @@
 						</label>
 						<div class="col-md-1 col-sm-1 col-xs-12">
 							<input type="text" id="title" name="tyearFounded"
-								th:field="${companyDetails.company.yearFounded}"
+								th:field="${company.yearFounded}"
 								class="form-control col-md-7 col-xs-12"> <span
 								th:if="${#fields.hasErrors('company.yearFounded')}"
 								th:errors="*{company.yearFounded}"></span>
 						</div>
 					</div>
+					
 					<div class="form-group ">
 						<label for="linkedin"
 							class="control-label col-md-3 col-sm-3 col-xs-12">#
 							Employees </label>
 						<div class="col-md-2 col-sm-2 col-xs-12">
 							<input id="relationship" class="form-control col-md-7 col-xs-12"
-								type="text" th:field="${companyDetails.company.numEmployees}"
+								type="text" th:field="${company.numEmployees}"
 								name="relationship"> <span
 								th:if="${#fields.hasErrors('company.numEmployees')}"
 								th:errors="*{company.numEmployees}"></span>
@@ -77,9 +78,8 @@
 							class="control-label col-md-3 col-sm-12 col-xs-12">Description
 						</label>
 						<div class="col-md-6 col-sm-12 col-xs-12">
-							<textarea id="comments" class="form-control col-md-7 col-xs-12"
-								type="text" name="comments"
-								th:field="${companyDetails.company.description}"></textarea>
+							<textarea id="comments" class="form-control col-md-7 col-xs-12" 
+								type="text" name="comments" th:field="${company.description}"></textarea>
 							<span th:if="${#fields.hasErrors('company.description')}"
 								th:errors="*{company.description}"></span>
 						</div>
@@ -88,16 +88,30 @@
 						<label for="linkedin"
 							class="control-label col-md-3 col-sm-12 col-xs-12">Industry
 						</label>
-						<div class="col-md-6 col-sm-12 col-xs-12">
-							<select id="comments" class="form-control col-md-7 col-xs-12"
-								type="text" name="description">	
-									<option value="industry" th:each="industry : ${industries}" th:value="${industry.category}"></option>	
-							</select> <span th:if="${#fields.hasErrors('company.description')}"
-								th:errors="*{company.description}"></span>
+						<div class="col-md-6 col-sm-12 col-xs-12"> 
+							<select  name="category" id="category" class="form-control col-md-7 col-xs-12" th:field="${company.category}"
+								  >	
+									<option value="">Select an industry</option>
+									 <option th:each="category : ${categories}"   th:value="${category.id}" th:text="${category.subcategorie}" ></option>
+						 
+									<!-- <option th:each="industry : ${industries}"   th:value="${industry}" th:text="${industry.subcategory}+' ------  '+${industry.category}"></option>
+						 -->
+							</select> 
 						</div>
-					</div>
+					</div> 
+						<!-- <div class="form-group">
+						<label class="control-label col-md-3 col-sm-3 col-xs-12"
+							for="title">Year Founded<span class="required">*</span>
+						</label>
+						<div class="col-md-1 col-sm-1 col-xs-12">
+							<input type="text" id="title" name="tyearFounded"
+								th:field="*{industry_slct}"
+								class="form-control col-md-7 col-xs-12"> 
+						</div>
+					</div> -->
+
+					<div class="ln_solid"></div>
 					
-					<div class="ln_solid"></div>a
 					<h4>Financial Information</h4>
 					</br>
 
@@ -105,12 +119,12 @@
 						<div class="col-md-3 col-sm-12 col-xs-12 form-group">
 							<label for="ex3">Fiscal Year</label> <input type="date"
 								placeholder=".col-md-3" class="form-control"
-								th:field="${companyDetails.company.fiscalYear}">
+								th:field="${company.fiscalYear}">
 						</div>
 
 						<div class="col-md-3 col-sm-12 col-xs-12 form-group">
 							<label for="ex3">Currency</label> <select class="form-control"
-								th:field="${companyDetails.company.currency}">
+								th:field="${company.currency}">
 								<option value="US Dollar">US DOllar</option>
 								<option value="Euro">Euro</option>
 								<option value="yen">Yen</option>
@@ -119,16 +133,15 @@
 
 						<div class="col-md-3 col-sm-12 col-xs-12 form-group">
 							<label for="ex3">Revenue</label> <input type="text"
-								class="form-control"
-								th:field="${companyDetails.company.revenue}"> <span
+								class="form-control" th:field="${company.revenue}"> <span
 								th:if="${#fields.hasErrors('company.revenue')}"
 								th:errors="*{company.revenue}"></span>
 						</div>
 
 						<div class="col-md-3 col-sm-12 col-xs-12 form-group">
 							<label for="ex3">EBIDTA</label> <input type="text"
-								class="form-control" th:field="${companyDetails.company.ebidta}">
-							<span th:if="${#fields.hasErrors('company.ebidta')}"
+								class="form-control" th:field="${company.ebidta}"> <span
+								th:if="${#fields.hasErrors('company.ebidta')}"
 								th:errors="*{company.ebidta}"></span>
 						</div>
 					</div>
@@ -141,7 +154,7 @@
 						<div class="col-md-3 col-sm-12 col-xs-12 form-group">
 							<label for="ex3">Primary Phone</label> <input type="text"
 								class="form-control" placeholder="ex. 249-632-9275"
-								th:field="${companyDetails.company.primaryPhone}"> <span
+								th:field="${company.primaryPhone}"> <span
 								th:if="${#fields.hasErrors('company.primaryPhone')}"
 								th:errors="*{company.primaryPhone}"></span>
 						</div>
@@ -149,7 +162,7 @@
 						<div class="col-md-3 col-sm-12 col-xs-12 form-group">
 							<label for="ex3">Secondary Phone</label> <input type="text"
 								class="form-control" placeholder="ex. 249-789-2323"
-								th:field="${companyDetails.company.secondaryPhone}"> <span
+								th:field="${company.secondaryPhone}"> <span
 								th:if="${#fields.hasErrors('company.secondaryPhone')}"
 								th:errors="*{company.secondaryPhone}"></span>
 						</div>
@@ -165,7 +178,7 @@
 
 							<input type="text" id="last-name" name="last-name"
 								class="form-control col-md-7 col-xs-12"
-								th:field="${companyDetails.address.street}">
+								th:field="${address.street}">
 						</div>
 					</div>
 					<div class="form-group">
@@ -175,7 +188,7 @@
 
 							<input type="text" id="last-name" name="last-name"
 								class="form-control col-md-7 col-xs-12"
-								th:field="${companyDetails.address.city}">
+								th:field="${address.city}">
 						</div>
 					</div>
 					<div class="form-group">
@@ -184,16 +197,15 @@
 						<div class="col-md-6 col-sm-6 col-xs-12">
 
 							<input type="text" id="last-name" name="last-name"
-								class="form-control col-md-7 col-xs-12"
-								th:field="${companyDetails.address.zipcode}">
+								class="form-control col-mdd-7 col-xs-12"
+								th:field="${address.zipcode}">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
 							for="first-name">State</label>
 						<div class="col-md-2 col-sm-6 col-xs-12">
-							<select class="form-control"
-								th:field="${companyDetails.address.state}">
+							<select class="form-control" th:field="${address.state}">
 								<option value="MD">Maryland</option>
 								<option value="TX">Texas</option>
 								<option value="DC">District of Columbia</option>
@@ -205,8 +217,7 @@
 						<label class="control-label col-md-3 col-sm-3 col-xs-12"
 							for="first-name">Country</label>
 						<div class="col-md-2 col-sm-6 col-xs-12">
-							<select class="form-control"
-								th:field="${companyDetails.address.country}">
+							<select class="form-control" th:field="${address.country}">
 								<option value="USA">USA</option>
 								<option value="Japan">Japan</option>
 								<option value="China">China</option>
@@ -216,6 +227,25 @@
 							</select>
 						</div>
 					</div>
+					<!-- <div class="ln_solid"></div>
+
+					<table class="table table-striped projects" th:unless="${#lists.isEmpty(industries)}">
+						<thead>
+							<tr>
+								  <th style="width: 1%">#</th>
+								<th style="width: 20%">Name</th>
+								<th>Title</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="industry : ${industries}">
+								<td th:text="${industry.category}"></td>
+								<td th:text="${industry.subcategory}"></td>
+
+							</tr>
+						</tbody>
+					</table> -->
 
 					<div class="ln_solid"></div>
 					<div class="form-group">

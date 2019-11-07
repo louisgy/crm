@@ -43,7 +43,7 @@ public class Industry {
     private Set<Company> companies= new HashSet<>();
     
     public Industry() {
-    	
+    	super();
     }
     
     public Industry(String category, String subcategory) {
@@ -87,6 +87,12 @@ public class Industry {
 
 	public void setCompanies(Set<Company> companies) {
 		this.companies = companies;
+	}
+
+	@Override
+	public String toString() {
+		return "Industry [id=" + id + ", category=" + category + ", subcategory=" + subcategory + ", companies="
+				+ companies + "]";
 	}
 
 	

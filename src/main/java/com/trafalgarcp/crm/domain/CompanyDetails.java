@@ -8,6 +8,8 @@ public class CompanyDetails {
 	@Valid
 	public Company company;
 	
+
+	
 	public Address getAddress() {
 		return address;
 	}
@@ -20,6 +22,8 @@ public class CompanyDetails {
 	public void setCompany(Company company) {
 		this.company = company;
 	}
+
+	
 	
 	
 	

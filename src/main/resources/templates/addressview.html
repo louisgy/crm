@@ -67,51 +67,56 @@ span {
 	width: 100px;
 	margin: 45px;
 }
+
 table {
-  width: 100%;
+	width: 100%;
 }
 
 td {
-  height: 30px;
+	height: 30px;
 }
+
 th, td {
-  border-bottom: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
 }
+
 ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333333;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #333333;
 }
 
 li {
-  float: left;
+	float: left;
 }
 
 li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 16px;
-  text-decoration: none;
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 16px;
+	text-decoration: none;
 }
 
 li a:hover {
-  background-color: #111111;
+	background-color: #111111;
 }
 </style>
 </head>
 
 <body>
 	<div class="cadran">
-		
-			
-			<ul>
-  <li><a th:href="@{/company/{id}/address/new(id=${company.id})}">Add Address</a></li>
-  <li><a href="#contact">Edit</a></li></ul>
-  <h1>Company</h1>
-		<table border="0" >
+
+
+		<ul>
+			<li><a th:href="@{/company/{id}/address/new(id=${company.id})}">Add
+					Address</a></li>
+			<li><a href="#contact">Edit</a></li>
+		</ul>
+		<h1>Company</h1>
+		<table border="0">
 			<tr>
 				<td class="b">Id</td>
 				<td><span th:text="*{company.id}">name</span></td>
@@ -146,47 +151,48 @@ li a:hover {
 			</tr>
 			<tr>
 				<td class="b">Secondary Phone</td>
-				<td><span th:text="*{company.secondaryPhone}">Year Founded</span></td>
+				<td><span th:text="*{company.secondaryPhone}">Year
+						Founded</span></td>
 			</tr>
 			<tr>
 				<td class="b">Tertiary Phone</td>
-				<td><span th:text="*{company.tertiaryPhone}">Year Founded</span></td>
+				<td><span th:text="*{company.tertiaryPhone}">Year
+						Founded</span></td>
 			</tr>
 
 		</table>
-		
+
 		<h1>Addresses</h1>
 
-		 <div th:if="${not #lists.isEmpty(addresses)}">
-      
-        <table class="table" >
-            <tr>
-                <th>Id</th>
-                <th>Street</th>
-                <th>City</th>
-                <th>State</th>
-                <th>Zipcode</th>
-                <th>View</th>
-                <th>Edit</th>
-            </tr>
-            <tr th:each="address : ${addresses}">
-                <td th:text="${address.id}">Id</td> 
-                <td th:text="${address.street}">street</td>
-                <td th:text="${address.city}">City</td> 
-                <td th:text="${address.state}">State</td>
-                <td th:text="${address.zipcode}">Zipcode</td> 
-                <td th:text="${address.street}">View</td>
-                <td th:text="${address.id}">Edit</td> 
-               <!--   <td th:text="${address.id">Product Id</td>  -->
-               <!--  <td th:text="${product.description}">descirption</td>
+		<div th:if="${not #lists.isEmpty(addresses)}">
+
+			<table class="table">
+				<tr>
+					<th>Id</th>
+					<th>Street</th>
+					<th>City</th>
+					<th>State</th>
+					<th>Zipcode</th>
+					<th>View</th>
+					<th>Edit</th>
+				</tr>
+				<tr th:each="address : ${addresses}">
+					<td th:text="${address.id}">Id</td>
+					<td th:text="${address.street}">street</td>
+					<td th:text="${address.city}">City</td>
+					<td th:text="${address.state}">State</td>
+					<td th:text="${address.zipcode}">Zipcode</td>
+					<td th:text="${address.street}">View</td>
+					<td th:text="${address.id}">Edit</td>
+					<!--   <td th:text="${address.id">Product Id</td>  -->
+					<!--  <td th:text="${product.description}">descirption</td>
                 <td th:text="${product.price}">price</td>
                 <td><a th:href="${ '/product/' + product.id}">View</a></td>
                 <td><a th:href="${'/product/edit/' + product.id}">Edit</a></td> -->
-            </tr>
-</table>
-		
-	</div>
+				</tr>
+			</table>
 
+		</div>
 </body>
 
 </html>
