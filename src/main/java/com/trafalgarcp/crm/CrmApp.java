@@ -17,8 +17,6 @@ public class CrmApp {
 
 		public static void main(String[] args) {
 			SpringApplication.run(CrmApp.class, args);
-			
-			
 		}
 }
 

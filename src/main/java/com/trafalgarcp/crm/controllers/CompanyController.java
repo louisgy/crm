@@ -98,6 +98,18 @@ public class CompanyController {
 
 		return "/company";
 	}
+	
+	/*
+	 * List All Companies
+	 */
+
+	@GetMapping("/company")
+	public String getCompanyList(Model model) {
+		Company company = new Company();
+		List<Company> companies = this.companyRepository.findAll();
+		model.addAttribute("companies", companies);
+		return "/company/company";
+	}
 
 	@GetMapping("company-landing")
 	public String showCompanyLanding() {
@@ -168,17 +180,7 @@ public class CompanyController {
 		return "industry-test";
 	}
 
-	/*
-	 * List All Companies
-	 */
 
-	@GetMapping("/company")
-	public String getCompanyList(Model model) {
-		Company company = new Company();
-		List<Company> companies = this.companyRepository.findAll();
-		model.addAttribute("companies", companies);
-		return "/company/company";
-	}
 
 	/*
 	 * show a company data and addresses
