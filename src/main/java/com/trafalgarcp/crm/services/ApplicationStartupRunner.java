@@ -261,7 +261,7 @@ public class ApplicationStartupRunner implements CommandLineRunner {
 
 
 		}   // End outer while
-		System.out.println("\n"+"***************** ");
+		//System.out.println("\n"+"***************** ");
 		data.forEach(System.out::println);
 	}
 }

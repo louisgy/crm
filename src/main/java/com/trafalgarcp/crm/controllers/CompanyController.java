@@ -105,10 +105,22 @@ public class CompanyController {
 
 	@GetMapping("/company")
 	public String getCompanyList(Model model) {
+		
 		Company company = new Company();
+		Category category = new Category();
 		List<Company> companies = this.companyRepository.findAll();
+		List<String> categories= this.categoryRepository.findDistinctCategorie();
+		List<String> subcategories= this.categoryRepository.findDistinctSubcategorie();
+		System.out.println("\n\n"+"*****____________****________--");        
+		//companies.stream().forEach(s -> s.getCategorizedCompanies().forEach(t -> System.out.println(t.)));
+    	System.out.println("\n\n"+"*****____________****________--");
 		model.addAttribute("companies", companies);
+		model.addAttribute("categories",categories);
+		model.addAttribute("subcategories",subcategories);
+		model.addAttribute("category",category);
 		return "/company/company";
+		
+		
 	}
 
 	@GetMapping("company-landing")
@@ -278,5 +290,11 @@ public class CompanyController {
 
 		return "redirect:/company/" + company1.getId();
 	}
+	
+	@GetMapping("/company/test")
+	public String test() {
+		return "/company/test";
+	}
+	
 
 }

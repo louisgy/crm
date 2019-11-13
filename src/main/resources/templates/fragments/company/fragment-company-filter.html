@@ -1,27 +1,84 @@
 <div class="row" data-th-fragment="company-filter">
-<!-- <div class="col-md-12 col-sm-12 col-xs-12" data-th-fragment="company-description">
-	<div class="x_panel">
-		<div class="x_title">
-			<h2>
-				Business Description <small></small>
-			</h2>
-			<ul class="nav navbar-right panel_toolbox">
-				<a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i>
-					Edit </a>
-			</ul>
-			<div class="clearfix"></div>
-		</div>
-		<div class="x_content">
-			<p >The company description section of your business plan is
-				typically the second section, coming after the executive summary.
-				The company description outlines vital details about your company,
-				such as where you are located, how large the company is, what you do
-				and what you hope to accomplish The company description section of
-				your business plan is typically the second section, coming after the
-				executive summary. The company description outlines vital details
-				about your company, such as where you are located, how large the
-				company is, what you do and what you hope to accomplish</p>
+	<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="x_panel">
+
+			<div class="x_content">
+				<br />
+				<h4>Filter</h4>
+				<p class="font-gray-dark">Pick Selection for search</p>
+				<form class="form-inline">
+					<div class="form-group">
+						<label for="ex3">Category</label> <input type="text" id="ex3"
+							class="form-control" placeholder=" ">
+					</div>
+					<div class="form-group">
+						<label for="ex4">Subcategory</label> <input type="email" id="ex4"
+							class="form-control" placeholder=" ">
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
-</div> -->
 </div>
+
+<th:block data-th-fragment="company-filter1">
+	<form>
+		<div class="row">
+			<div class="page-title">
+				<div
+					class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+					<div class="input-group">
+						<input type="text" class="form-control"
+							placeholder="Search for..."> <span
+							class="input-group-btn">
+							<button class="btn btn-default" type="button">Go!</button>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="row">
+			<div class="col-md-6 col-xs-12">
+				<div class="x_panel">
+					<div class="form-label-left form-horizontal">
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">Select
+								Category</label>
+							<div class="col-md-9 col-sm-9 col-xs-12">
+								<select th:field="${category.categorie}" class="select2_multiple form-control"
+									multiple="multiple">
+
+									<option th:each="categoriegrp :${categories}"
+										th:value="${categoriegrp}" th:text="${categoriegrp}">Choose
+										option</option>
+
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-xs-12">
+				<div class="x_panel">
+					<div class="form-label-left form-horizontal">
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">Select
+								SubCategory</label>
+							<div class="col-md-9 col-sm-9 col-xs-12">
+								<select th:field="*{category.subcategorie}" class="select2_multiple form-control"
+									multiple="multiple">
+									<option th:each="subcategoriegrp :${subcategories}"
+										th:value="${subcategoriegrp}" th:text="${subcategoriegrp}">Choose
+										option</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+</th:block>

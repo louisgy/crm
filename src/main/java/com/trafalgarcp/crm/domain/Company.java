@@ -74,7 +74,7 @@ public class Company {
 	@ManyToMany(mappedBy = "companies") // should be deleted thereafter
 	private Set<Industry> industries = new HashSet<>(); // should be deleted thereafter
 	
-	@OneToMany(mappedBy = "company")
+	@OneToMany(mappedBy = "company",fetch = FetchType.EAGER)
     protected Set<CategorizedCompany> categorizedCompanies = new HashSet<>();
 
 
