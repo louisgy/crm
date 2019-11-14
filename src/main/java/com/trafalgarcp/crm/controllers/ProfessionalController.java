@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.trafalgarcp.crm.domain.Company;
-import com.trafalgarcp.crm.domain.Notes;
+
 import com.trafalgarcp.crm.domain.Professional;
 import com.trafalgarcp.crm.exception.ResourceNotFoundException;
 import com.trafalgarcp.crm.repository.CompanyRepository;

@@ -11,28 +11,74 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.trafalgarcp.crm.domain.Notes;
-import com.trafalgarcp.crm.domain.NotesRepository;
+import com.trafalgarcp.crm.domain.Note;
+
+
+import com.trafalgarcp.crm.repository.NoteRepository;
 
 @Controller
+//@RequestMapping("/company/{companyId}")
 public class NoteController {
 	
 	@Autowired
-	NotesRepository notesRepository;
+	NoteRepository noteRepository;
 	
-	@GetMapping("/getnote")
-	public String getNotesForm(Notes note) {
-		//model.addAttribute("notes", new Notes());
-		return "notes-frm";
+	
+	
+	/*
+	 * Show form to create note
+	 */
+	
+	@GetMapping("/note/new")
+	public String initCreationForm(Model model) {
+		Note note = new Note();
+		model.addAttribute("note",note);
+		return "note/note-index";
 	}
 	
-	@PostMapping("/newnote") 
-	public String saveNotes(@Valid  Notes note,BindingResult bindingResult) {
-//		System.out.println("******************"+note.getNote());
-		if(bindingResult.hasErrors()) {
-			return "notes-frm";
-		}
+	/*
+	 * Process form that crate new note  
+	 */
+	
+	@PostMapping("/note/new")
+	public String processCreationForm(Note note) {
+		this.noteRepository.save(note);
+		return "note/notes";
+	}
+	
+	
+    /*
+     * Show notes
+     */
+	@GetMapping("/notes")
+	public String showNotes() {
+		return "";
+	}
+	
+	/*
+	 * Show the list of notes
+	 */
+	
+	@GetMapping("/note")
+	public String newNotes() {
+		Note note =  new Note();
+		return "note/note-index";
+	}
+	
+//	@GetMapping("/getnote")
+//	public String getNotesForm(Notes note) {
+//		//model.addAttribute("notes", new Notes());
+//		return "notes-frm";
+//	}
+	
+//	@PostMapping("/newnote") 
+//	public String saveNotes(@Valid  Notes note,BindingResult bindingResult) {
+//
+//		if(bindingResult.hasErrors()) {
+//			return "notes-frm";
+//		}
 		
 //		Notes notes= new Notes();
 //		notes.setNote(note.getNote());
@@ -40,7 +86,7 @@ public class NoteController {
 //		notes.setDate(  new Date(2000, 11, 21) );
 //		notesRepository.save(notes);
 		
-		return "company";
-	}
+	//	return "company";
+	//}
 
 }

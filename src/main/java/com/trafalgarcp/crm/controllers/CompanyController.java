@@ -24,7 +24,7 @@ import com.trafalgarcp.crm.domain.Category;
 import com.trafalgarcp.crm.domain.Company;
 import com.trafalgarcp.crm.domain.CompanyDetails;
 import com.trafalgarcp.crm.domain.Industry;
-import com.trafalgarcp.crm.domain.Notes;
+
 import com.trafalgarcp.crm.domain.Professional;
 import com.trafalgarcp.crm.repository.AddressRepository;
 import com.trafalgarcp.crm.repository.CategorizedCompanyRepository;
