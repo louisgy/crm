@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 //@EnableJpaRepositories(basePackages = {"com.trafalgarcp.crm.domain"})
 //@EntityScan(basePackages = {"com.trafalgarcp.crm.domain"})
 //@ComponentScan({"com.trafalgarcp.crm."})
-@ComponentScan({"com.trafalgarcp.crm.constraints","com.trafalgarcp.crm.controllers","com.trafalgarcp.crm.services","com.trafalgarcp.crm.dto","com.trafalgarcp.crm.repository"})
+@ComponentScan({"com.trafalgarcp.crm.constraints","com.trafalgarcp.crm.controllers","com.trafalgarcp.crm.services","com.trafalgarcp.crm.dto","com.trafalgarcp.crm.repository","com.trafalgarcp.crm.security","com.trafalgarcp.crm.*"})
 
 public class CrmApp {
 

@@ -5,6 +5,7 @@ import java.sql.Date;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,6 +32,7 @@ public class NoteController {
 	 * Show form to create note
 	 */
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/note/new")
 	public String initCreationForm(Model model) {
 		Note note = new Note();
@@ -42,6 +44,7 @@ public class NoteController {
 	 * Process form that crate new note  
 	 */
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/note/new")
 	public String processCreationForm(Note note) {
 		this.noteRepository.save(note);

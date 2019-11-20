@@ -34,6 +34,7 @@ import com.trafalgarcp.crm.domain.Category;
 import com.trafalgarcp.crm.domain.Company;
 import com.trafalgarcp.crm.domain.Industry;
 import com.trafalgarcp.crm.domain.Professional;
+import com.trafalgarcp.crm.dto.Userdto;
 import com.trafalgarcp.crm.repository.AddressRepository;
 import com.trafalgarcp.crm.repository.CategorizedCompanyRepository;
 import com.trafalgarcp.crm.repository.CategoryRepository;
@@ -48,6 +49,9 @@ public class ApplicationStartupRunner implements CommandLineRunner {
 	private static final String COMMA_DELIMITER = ",";
 	File file_company = new File("./src//main/java/com/trafalgarcp/crm/services/us_companies.xlsx");
 	DecimalFormat decimalFormat = new DecimalFormat("0.#####");
+	
+	@Autowired
+	private Userservice userservice;
 
 	@Autowired
 	private IndustryRepository industryRepository;
@@ -71,6 +75,10 @@ public class ApplicationStartupRunner implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("\n\n" + "TESTED ++++++++++++++++++++++++++++++++++++++++" + "\n\n");
+		
+		createNewUser();
+		
+		
 
 		industry = new Industry("Finance", "Investment");
 		this.industryRepository.save(industry);
@@ -132,8 +140,8 @@ public class ApplicationStartupRunner implements CommandLineRunner {
 
 		Address address = new Address(2002, "MD", "Silver Spring", "9829 eastlight dr", "US");
 
-		Professional professional = new Professional("Job", "Duna", "CEO", "jduna@gmail.com",
-				"234-234-2343", "234-234-2343", "234-234-2343", "https://www.linkedin/jduna", "No");
+		Professional professional = new Professional("Job", "Duna", "CEO", "jduna@gmail.com", "234-234-2343",
+				"234-234-2343", "234-234-2343", "https://www.linkedin/jduna", "No");
 
 		address.setCompany(company);
 		professional.setCompany(company);
@@ -173,11 +181,17 @@ public class ApplicationStartupRunner implements CommandLineRunner {
 		}
 		return records;
 	}
-
 	
-	public void readExcel() throws EncryptedDocumentException, IOException {	
+	
+	public void createNewUser() {
 		
-		
+		Userdto user = new Userdto("David","Tebo","jdoe","dtebo@gmail.com","$2a$11$dp4wMyuqYE3KSwIyQmWZFeUb7jCsHAdk7ZhFc0qGw6i5J124imQBi","$2a$11$dp4wMyuqYE3KSwIyQmWZFeUb7jCsHAdk7ZhFc0qGw6i5J124imQBi");
+		userservice.signupUser(user);
+	}
+	
+
+	public void readExcel() throws EncryptedDocumentException, IOException {
+
 		FileInputStream fis = new FileInputStream(file_company);
 		// Finds the workbook instance for XLSX file
 		XSSFWorkbook myWorkBook = new XSSFWorkbook(fis);
@@ -192,76 +206,89 @@ public class ApplicationStartupRunner implements CommandLineRunner {
 
 		// Traversing over each row of XLSX file
 		while (rowIterator.hasNext()) {
-		
+
 			Company company1 = new Company();
 			company1.setFiscalYear((java.sql.Date) new Date(2000, 11, 21));
 			Address address1 = new Address();
 			Category category1 = new Category();
 			category1.setCategorie("category-test");
 			category1.setSubcategorie("subcategory-test");
-			
-			Professional professional1 = new Professional("Job", "Duna", "CEO", "jduna@gmail.com",
-					"234-234-2343", "234-234-2343", "234-234-2343", "https://www.linkedin/jduna", "No");
+
+			Professional professional1 = new Professional("Job", "Duna", "CEO", "jduna@gmail.com", "234-234-2343",
+					"234-234-2343", "234-234-2343", "https://www.linkedin/jduna", "No");
 			Row row = rowIterator.next();
-			
+
 			// For each row, iterate through each columns
 			Iterator<Cell> cellIterator = row.cellIterator();
-			
-			// Exit if the last row in the excel sheet reaches 529. Beyond 529 there is no data
-			if(cellIterator.next().getRowIndex() == 529) break;
-			
+
+			// Exit if the last row in the excel sheet reaches 529. Beyond 529 there is no
+			// data
+			if (cellIterator.next().getRowIndex() == 529)
+				break;
+
 			while (cellIterator.hasNext()) {
-				
+
 				Cell cell = cellIterator.next();
-				if(cell.getColumnIndex() == 1) company1.setName(cell.getStringCellValue());
-				if(cell.getColumnIndex() == 2) company1.setWebsite(cell.getStringCellValue());	
-				if(cell.getColumnIndex() == 3) company1.setYearFounded(Integer.parseInt(decimalFormat.format(cell.getNumericCellValue())));
-				if(cell.getColumnIndex() == 14) company1.setDescription(cell.getStringCellValue());
-				
-				
-				if(cell.getColumnIndex() == 4) address1.setCity(cell.getStringCellValue());
-				if(cell.getColumnIndex() == 5) address1.setState(cell.getStringCellValue());
-				if(cell.getColumnIndex() == 7) address1.setZipcode(Integer.parseInt(decimalFormat.format(cell.getNumericCellValue())));
-				
-				if(cell.getColumnIndex() == 17) {
-					if(!cell.getStringCellValue().isEmpty()) category1.setCategorie(cell.getStringCellValue());					
-					else  category1.setCategorie("NA");		 
+				if (cell.getColumnIndex() == 1)
+					company1.setName(cell.getStringCellValue());
+				if (cell.getColumnIndex() == 2)
+					company1.setWebsite(cell.getStringCellValue());
+				if (cell.getColumnIndex() == 3)
+					company1.setYearFounded(Integer.parseInt(decimalFormat.format(cell.getNumericCellValue())));
+				if (cell.getColumnIndex() == 14)
+					company1.setDescription(cell.getStringCellValue());
+
+				if (cell.getColumnIndex() == 4)
+					address1.setCity(cell.getStringCellValue());
+				if (cell.getColumnIndex() == 5)
+					address1.setState(cell.getStringCellValue());
+				if (cell.getColumnIndex() == 7)
+					address1.setZipcode(Integer.parseInt(decimalFormat.format(cell.getNumericCellValue())));
+
+				if (cell.getColumnIndex() == 17) {
+					if (!cell.getStringCellValue().isEmpty())
+						category1.setCategorie(cell.getStringCellValue());
+					else
+						category1.setCategorie("NA");
 				}
-				if(cell.getColumnIndex() == 10) if(!cell.getStringCellValue().isEmpty()) category1.setSubcategorie(cell.getStringCellValue());		
+				if (cell.getColumnIndex() == 10)
+					if (!cell.getStringCellValue().isEmpty())
+						category1.setSubcategorie(cell.getStringCellValue());
+
+//				switch (cell.getCellType()) {
+//				case STRING:
+//					//data.add(cell.getStringCellValue());
+//					System.out.println(cell.getColumnIndex()+" : STRING : "+cell.getStringCellValue());
+//					break;
+//                case NUMERIC:
+//                   // data.add(cell.getNumericCellValue());
+//                	System.out.println(cell.getColumnIndex()+" : NUMERIC : "+cell.getNumericCellValue());
+//                    break;
+//                case BOOLEAN:
+//                   // data.add(cell.getBooleanCellValue());
+//                	System.out.println(cell.getColumnIndex()+" : BOOLEAN : "+cell.getBooleanCellValue());
+//                    break;
+//				}   // End switch
+
+			} // End inner while
 			
-				
-					
-				
-				
-				switch (cell.getCellType()) {
-				case STRING:
-					//data.add(cell.getStringCellValue());
-					System.out.println(cell.getColumnIndex()+" : STRING : "+cell.getStringCellValue());
-					break;
-                case NUMERIC:
-                   // data.add(cell.getNumericCellValue());
-                	System.out.println(cell.getColumnIndex()+" : NUMERIC : "+cell.getNumericCellValue());
-                    break;
-                case BOOLEAN:
-                   // data.add(cell.getBooleanCellValue());
-                	System.out.println(cell.getColumnIndex()+" : BOOLEAN : "+cell.getBooleanCellValue());
-                    break;
-				}   // End switch
-			}   // End inner while
-			this.categoryRepository.save(category1);
-			address1.setCompany(company1);
-			professional1.setCompany(company1);
 			
-			this.companyRepository.save(company1);
-			this.addressRepository.save(address1);
-			this.professionalRepository.save(professional1);
+//			this.categoryRepository.save(category1);
+//			address1.setCompany(company1);
+//			professional1.setCompany(company1);
+//
+//			this.companyRepository.save(company1);
+//			this.addressRepository.save(address1);
+//			this.professionalRepository.save(professional1);
+//
+//			CategorizedCompany categorizedCompany = new CategorizedCompany(category1, company1);
+//			this.categorizedCompanyRepository.save(categorizedCompany);
 
-			CategorizedCompany categorizedCompany = new CategorizedCompany(category1, company1);
-			this.categorizedCompanyRepository.save(categorizedCompany);
-
-
-		}   // End outer while
-		//System.out.println("\n"+"***************** ");
-		data.forEach(System.out::println);
+		} // End outer while
+		// System.out.println("\n"+"***************** ");
+		//data.forEach(System.out::println);
+		
+		
+		
 	}
 }

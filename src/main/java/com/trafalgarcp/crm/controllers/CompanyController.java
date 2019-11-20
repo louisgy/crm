@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.trafalgarcp.crm.domain.Address;
 import com.trafalgarcp.crm.domain.CategorizedCompany;
@@ -103,7 +105,10 @@ public class CompanyController {
 	 * List All Companies
 	 */
 
-	@GetMapping("/company")
+
+
+//	@GetMapping("/company")
+	@RequestMapping(value= {"/","/company"},method = RequestMethod.GET)
 	public String getCompanyList(Model model) {
 		
 		Company company = new Company();
@@ -118,7 +123,8 @@ public class CompanyController {
 		model.addAttribute("categories",categories);
 		model.addAttribute("subcategories",subcategories);
 		model.addAttribute("category",category);
-		return "/company/company";
+		//return "/company/company";
+		return "index";
 		
 		
 	}

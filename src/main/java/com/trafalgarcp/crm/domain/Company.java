@@ -51,7 +51,7 @@ public class Company {
 	private int yearFounded;
 	@Digits(fraction = 0, integer = 10, message = " Number of employeees must a number betweent 0 and 9999999999")
 	private int numEmployees;
-	private String relationship;
+	private String relationship;   // is the company a client or prospect
 	private String primaryPhone;
 	private String secondaryPhone;
 	@Column(length =7000)
@@ -60,6 +60,11 @@ public class Company {
 	private String currency;
 	private BigDecimal revenue;
 	private BigDecimal ebidta;
+	private String relevantActivity; // like a not but needs a textArea
+	private String transactionValue; // string but is a number
+	private String fte;              // full time employee.
+	private String acquisitionCriteria;
+	
 	@Transient
 	private Industry industry; // used for list in Company form -- TO BE DELETED
 	@Transient

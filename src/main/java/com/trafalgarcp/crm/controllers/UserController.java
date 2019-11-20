@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
@@ -38,12 +39,33 @@ public class UserController {
 
 	@Autowired
 	private Userservice userservice;
+	
+	
+	/*
+	 *  show the login page
+	 */
 
-	@RequestMapping("/")
+//	@GetMapping("/login")
+	@RequestMapping(value={ "/login"},method = RequestMethod.GET)
 	public String loginForm(Model model) {
-		model.addAttribute("userlogindto", new Userlogindto());
-		return "index";
+		//model.addAttribute("userlogindto", new Userlogindto());
+		return "/user/login1";
+		//return "/user/login";
 	}
+	
+
+	/*
+	 * when user successfully log out, show this page
+	 */
+	
+	@GetMapping(value="/logout-success")
+	public String getLogoutPage(Model model) {
+		return "user/logout";
+	}
+	
+
+	
+	
 
 	@PostMapping("/signin")
 	public String landingSubmit(@ModelAttribute Userlogindto userlogindto) {
@@ -58,11 +80,7 @@ public class UserController {
 		return "signup";
 	}
 	
-	@GetMapping("/static")
-	public String simplepage() {
-		return "indext";
-	}
-	
+
 	@GetMapping("/edit-user-profile")
 	public String editUserProfile() {
 		return "edit-user-profile";

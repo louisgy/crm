@@ -55,11 +55,11 @@ public class  UserserviceImpl  implements Userservice {
 	@Override
 	public boolean isUsernameAlreadyUsed(String username) {
 		
-		List<User > userlist = userRepository.findByUsername(username);
-		if (userlist.size() > 0 ) // Email not yet used
-			return true;
+		User user= userRepository.findByUsername(username);
+		if (null == user ) // Email not yet used
+			return false;
 		else 
-		return false;
+		return true;
 	}
 
 
