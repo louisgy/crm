@@ -60,10 +60,13 @@ public class Company {
 	private String currency;
 	private BigDecimal revenue;
 	private BigDecimal ebidta;
-	private String relevantActivity; // like a not but needs a textArea
+	private String relevantActivity; // like a note but needs a textArea
 	private String transactionValue; // string but is a number
 	private String fte;              // full time employee.
-	private String acquisitionCriteria;
+	private String lov ;// lov: list of value : (dropdown) equity, prospect Strategic Buyer
+	private String acquisitionCriteria;   // String but is a number
+	
+	
 	
 	@Transient
 	private Industry industry; // used for list in Company form -- TO BE DELETED
@@ -375,6 +378,69 @@ public class Company {
 		this.ebidta = ebidta;
 	}
 	
+	
+
+	public String getRelevantActivity() {
+		return relevantActivity;
+	}
+
+
+
+	public void setRelevantActivity(String relevantActivity) {
+		this.relevantActivity = relevantActivity;
+	}
+
+
+
+	public String getTransactionValue() {
+		return transactionValue;
+	}
+
+
+
+	public void setTransactionValue(String transactionValue) {
+		this.transactionValue = transactionValue;
+	}
+
+
+
+	public String getFte() {
+		return fte;
+	}
+
+
+
+	public void setFte(String fte) {
+		this.fte = fte;
+	}
+
+
+
+	public String getLov() {
+		return lov;
+	}
+
+
+
+	public void setLov(String lov) {
+		this.lov = lov;
+	}
+
+
+
+	public String getAcquisitionCriteria() {
+		return acquisitionCriteria;
+	}
+
+
+
+	public void setAcquisitionCriteria(String acquisitionCriteria) {
+		this.acquisitionCriteria = acquisitionCriteria;
+	}
+	
+	
+
+
 
 	@Override
 	public String toString() {

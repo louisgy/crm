@@ -25,6 +25,9 @@
 	<form>
 		<div class="row">
 			<div class="page-title">
+				<div class="title_left">
+					<h4>Search Criteria Selection</h4>
+				</div>
 				<div
 					class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 					<div class="input-group">
@@ -43,11 +46,11 @@
 				<div class="x_panel">
 					<div class="form-label-left form-horizontal">
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Select
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">
 								Category</label>
 							<div class="col-md-9 col-sm-9 col-xs-12">
-								<select th:field="${category.categorie}" class="select2_multiple form-control"
-									multiple="multiple">
+								<select th:field="${category.categorie}"
+									class="select2_multiple form-control" multiple="multiple">
 
 									<option th:each="categoriegrp :${categories}"
 										th:value="${categoriegrp}" th:text="${categoriegrp}">Choose
@@ -63,15 +66,58 @@
 				<div class="x_panel">
 					<div class="form-label-left form-horizontal">
 						<div class="form-group">
-							<label class="control-label col-md-3 col-sm-3 col-xs-12">Select
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">
 								SubCategory</label>
 							<div class="col-md-9 col-sm-9 col-xs-12">
-								<select th:field="*{category.subcategorie}" class="select2_multiple form-control"
-									multiple="multiple">
+								<select th:field="*{category.subcategorie}"
+									class="select2_multiple form-control" multiple="multiple">
 									<option th:each="subcategoriegrp :${subcategories}"
 										th:value="${subcategoriegrp}" th:text="${subcategoriegrp}">Choose
 										option</option>
 								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+		<div class="row">
+			<div class="col-md-6 col-xs-12">
+				<div class="x_panel">
+					<div class="form-label-left form-horizontal">
+						<div class="form-group">
+							<label class="control-label col-md-3 col-sm-3 col-xs-12">Select
+								lov</label>
+							<div class="col-md-9 col-sm-9 col-xs-12">
+								<select class="select2_multiple form-control">
+
+									<option value=" private equity">private equity</option>
+									<option value="Prospect">Prospect</option>
+									<option value="Strategic Buyer">Strategic Buyer</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-xs-12">
+				<div class="x_panel">
+					<div class="form-label-left form-horizontal">
+						<div class="form-group">
+							<label class="control-label col-xs-3">Acquisition :</label>
+							<label class="control-label col-xs-1">(Min)</label>
+							<div class="col-xs-3">
+								<input type="text" class="form-control">
+							</div>
+							<!-- <div class="col-xs-2">
+								<select class="select2_multiple form-control">
+									<option value=">">></option>
+								</select>
+							</div> -->
+							<label class="control-label col-xs-1">(Max)</label>
+							<div class="col-xs-3">
+								<input type="text" class="form-control">
 							</div>
 						</div>
 					</div>
