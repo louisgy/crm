@@ -1,8 +1,10 @@
+
 package com.trafalgarcp.crm.controllers;
 
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -28,6 +30,7 @@ import com.trafalgarcp.crm.domain.CompanyDetails;
 import com.trafalgarcp.crm.domain.Industry;
 
 import com.trafalgarcp.crm.domain.Professional;
+import com.trafalgarcp.crm.helper.CompanyHelperExressions;
 import com.trafalgarcp.crm.repository.AddressRepository;
 import com.trafalgarcp.crm.repository.CategorizedCompanyRepository;
 import com.trafalgarcp.crm.repository.CategoryRepository;
@@ -127,6 +130,22 @@ public class CompanyController {
 		return "index";
 		
 		
+	}
+	/*
+	 * To be deleted
+	 */
+	
+	@GetMapping("/company/test")
+	public String test() {
+		Company c = new Company();
+		System.out.println("\n\n"+"******+++++++========="+"\n\n");
+		Iterator <Company> it=this.companyRepository.findAll(CompanyHelperExressions.hasName("LeapByCodes")).iterator();
+		
+		while (it.hasNext()) {
+			System.out.println("\n\n"+"**********"+it.next().getName()+"========="+"\n\n");
+		}
+		
+		return "/company";
 	}
 
 	@GetMapping("company-landing")
@@ -297,10 +316,7 @@ public class CompanyController {
 		return "redirect:/company/" + company1.getId();
 	}
 	
-	@GetMapping("/company/test")
-	public String test() {
-		return "/company/test";
-	}
+
 	
 
 }
